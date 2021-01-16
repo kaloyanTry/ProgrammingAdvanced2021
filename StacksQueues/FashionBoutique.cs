@@ -8,29 +8,27 @@ namespace FashionBoutique
     {
         static void Main(string[] args)
         {
-            int[] allClothesInBox = Console.ReadLine().Split().Select(int.Parse).ToArray();
+            int[] clothesInBox = Console.ReadLine().Split().Select(int.Parse).ToArray();
+            int rackCapacity = int.Parse(Console.ReadLine());
 
-            Stack<int> allClothes = new Stack<int>(allClothesInBox);
+            int rackFill = 0;
+            int racksNumber = 1;
 
-            int boxCapacity = int.Parse(Console.ReadLine());
+            Stack<int> stackClothes = new Stack<int>(clothesInBox);
 
-            int currentRackCapacity = boxCapacity;
-            int racksCount = 1;
-
-            while (allClothes.Any())
+            while (stackClothes.Any())
             {
-                int clothes = allClothes.Pop();
+                int clothes = stackClothes.Pop();
+                rackFill += clothes;
 
-                currentRackCapacity -= clothes;
-
-                if (currentRackCapacity < 0)
+                if (rackFill > rackCapacity)
                 {
-                    racksCount++;
-                    currentRackCapacity = boxCapacity - clothes;
+                    racksNumber++;
+                    rackFill = clothes;
                 }
             }
 
-            Console.WriteLine(racksCount);
+            Console.WriteLine(racksNumber);
         }
     }
 }
