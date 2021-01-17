@@ -20,6 +20,7 @@ namespace CupsBottles
             {
                 int cup = cupsCapacity.Peek();
                 int currentCupLevel = 0;
+                
                 while (currentCupLevel < cup && bottlesCapacity.Any())
                 {
                     int bottle = bottlesCapacity.Pop();
