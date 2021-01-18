@@ -6,26 +6,33 @@ namespace SumElementsMatrix
     {
         static void Main(string[] args)
         {
-            int n = int.Parse(Console.ReadLine());
+                        int[] input = Console.ReadLine().Split(", ").Select(int.Parse).ToArray();
+            int rows = input[0];
+            int cols = input[1];
 
-            int[,] matrix = new int[n, n];
+            int[,] matrix = new int[rows, cols];
 
-            for (int row = 0; row < n; row++)
+            for (int row = 0; row < rows; row++)
             {
-                for (int col = 0; col < n; col++)
+                int[] rowData = Console.ReadLine().Split(", ").Select(int.Parse).ToArray();
+                for (int col = 0; col < cols; col++)
                 {
-                    matrix[row, col] = row + col;
+                    matrix[row, col] = rowData[col];
                 }
             }
 
-            for (int row = 0; row < matrix.GetLength(0); row++)
+            int sum = 0;
+            for (int row = 0; row < rows; row++)
             {
-                for (int col = 0; col < matrix.GetLength(1); col++)
+                for (int col = 0; col < cols; col++)
                 {
-                    Console.Write(matrix[row, col] + " ");
+                    sum += matrix[row, col];
                 }
-                Console.WriteLine();
             }
+
+            Console.WriteLine(rows);
+            Console.WriteLine(cols);
+            Console.WriteLine(sum);
         }
     }
 }
