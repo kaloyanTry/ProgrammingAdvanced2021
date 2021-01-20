@@ -20,6 +20,15 @@ namespace SquareSum
             int maxRow = -1;
             int maxCol = -1;
 
+            CalculateSquare(rows, cols, matrix, ref maxSum, ref maxRow, ref maxCol);
+
+            PrintMatrix(matrix, maxRow, maxCol);
+
+            Console.WriteLine(maxSum);
+        }
+
+        private static void CalculateSquare(int rows, int cols, int[,] matrix, ref int maxSum, ref int maxRow, ref int maxCol)
+        {
             for (int row = 0; row < rows - 1; row++)
             {
                 for (int col = 0; col < cols - 1; col++)
@@ -33,10 +42,6 @@ namespace SquareSum
                     }
                 }
             }
-
-            PrintMatrix(matrix, maxRow, maxCol);
-
-            Console.WriteLine(maxSum);
         }
 
         private static void PrintMatrix(int[,] matrix, int maxRow, int maxCol)
