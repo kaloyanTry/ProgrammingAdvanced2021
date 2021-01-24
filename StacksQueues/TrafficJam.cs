@@ -7,34 +7,37 @@ namespace TrafficJam
     {
         static void Main(string[] args)
         {
-            int n = int.Parse(Console.ReadLine());
-
-            string command = Console.ReadLine();
+            int greenLightPassingCars = int.Parse(Console.ReadLine());
 
             Queue<string> cars = new Queue<string>();
-            int countCars = 0;
+            
+            int carsCount = 0;
+            string input = Console.ReadLine();
 
-            while (command != "end")
+            while (input != "end")
             {
-
-                if (command == "green")
+                if (input == "green")
                 {
-                    for (int i = 0; i < n; i++)
+                    for (int i = 0; i < greenLightPassingCars; i++)
                     {
-                        if (cars.Count > 0)
+                        if (cars.Any())
                         {
-                            Console.WriteLine(cars.Dequeue() + " passed!");
-                            countCars++;
+                            carsCount++;
+                            string passingCar = cars.Dequeue();
+                            
+                            Console.WriteLine($"{passingCar} passed!");
                         }
                     }
                 }
                 else
                 {
-                    cars.Enqueue(command);
+                    cars.Enqueue(input);
                 }
-                command = Console.ReadLine();
+
+                input = Console.ReadLine();
             }
-            Console.WriteLine($"{countCars} cars passed the crossroads.");
+
+            Console.WriteLine($"{carsCount} cars passed the crossroads.");
         }
     }
 }
