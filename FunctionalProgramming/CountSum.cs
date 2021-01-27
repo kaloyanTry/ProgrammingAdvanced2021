@@ -1,0 +1,34 @@
+﻿using System;
+using System.Linq;
+
+namespace SumNumbers
+{
+    class CountSum
+    {
+        static void Main(string[] args)
+        {
+            PrintSumCount(
+                int.Parse, a => a.Length, 
+                array =>
+                {
+                    int sum = 0;
+                    foreach (var item in array)
+                    {
+                        sum += item;
+                    }
+
+                    return sum;
+                });
+        }
+
+        static void PrintSumCount(Func<string, int> parser,
+            Func<int[], int> countGetter,
+            Func<int[], int> sumCalculator)
+        {
+            int[] array = Console.ReadLine().Split(", ").Select(parser).ToArray();
+
+            Console.WriteLine(countGetter(array));
+            Console.WriteLine(sumCalculator(array));
+        }
+    }
+}
