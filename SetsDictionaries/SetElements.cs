@@ -8,25 +8,25 @@ namespace SetsOfElements
     {
         static void Main(string[] args)
         {
-            int[] input = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
-            int n = input[0];
-            int m = input[1];
+            string[] input = Console.ReadLine().Split();
+            int nLenght = int.Parse(input[0]);
+            int mLenght = int.Parse(input[1]);
 
             HashSet<int> firstSet = new HashSet<int>();
             HashSet<int> secondSet = new HashSet<int>();
 
-            for (int i = 0; i < n + m; i++)
+            for (int i = 0; i < nLenght + mLenght; i++)
             {
-                if (i < n)
+                int nNums = int.Parse(Console.ReadLine());
+
+                if (i < nLenght)
                 {
-                    int first = int.Parse(Console.ReadLine());
-                    firstSet.Add(first);
+                    firstSet.Add(nNums);
                 }
                 else
                 {
-                    int second = int.Parse(Console.ReadLine());
-                    secondSet.Add(second);
-                }                              
+                    secondSet.Add(nNums);
+                }
             }
 
             firstSet.IntersectWith(secondSet);
