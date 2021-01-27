@@ -13,34 +13,35 @@ namespace Wardrobe
 
             for (int i = 0; i < n; i++)
             {
-                string[] splitted = Console.ReadLine().Split(new string[] { ",", " -> " }, StringSplitOptions.RemoveEmptyEntries).ToArray();
+                string[] input = Console.ReadLine().Split(new string[] { ",", " -> " }, StringSplitOptions.RemoveEmptyEntries);
+                string color = input[0];
 
-                string color = splitted[0];
                 if (!wardrobe.ContainsKey(color))
                 {
-                    wardrobe[color] = new Dictionary<string, int>();
+                    wardrobe.Add(color, new Dictionary<string, int>());
                 }
 
-                for (int j = 1; j < splitted.Length; j++)
+                for (int j = 1; j < input.Length; j++)
                 {
-                    if (!wardrobe[color].ContainsKey(splitted[j]))
+                    if (!wardrobe[color].ContainsKey(input[j]))
                     {
-                        wardrobe[color][splitted[j]] = 0;
+                        wardrobe[color][input[j]] = 0;
                     }
-
-                    wardrobe[color][splitted[j]]++;
+                    wardrobe[color][input[j]]++;
                 }
             }
 
-            string[] searchData = Console.ReadLine().Split().ToArray();
+            string[] criteria = Console.ReadLine().Split();
+            string colorCriteria = criteria[0];
+            string clothCriteria = criteria[1];
 
-            foreach (var pair in wardrobe)
+            foreach (var color in wardrobe)
             {
-                Console.WriteLine($"{pair.Key} clothes: ");
+                Console.WriteLine($"{color.Key} clothes: ");
 
-                foreach (var cloth in pair.Value)
+                foreach (var cloth in color.Value)
                 {
-                    if (pair.Key == searchData[0] && cloth.Key == searchData[1])
+                    if (color.Key == colorCriteria && cloth.Key == clothCriteria)
                     {
                         Console.WriteLine($"* {cloth.Key} - {cloth.Value} (found!)");
                     }
