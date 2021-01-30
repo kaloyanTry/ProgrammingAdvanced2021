@@ -8,81 +8,82 @@ namespace Ranking
     {
         static void Main(string[] args)
         {
-            var contests = new Dictionary<string, string>();
-            var users = new Dictionary<string, Dictionary<string, int>>();
+            Dictionary<string, string> contests = new Dictionary<string, string>();
+            Dictionary<string, Dictionary<string, int>> submissions = new Dictionary<string, Dictionary<string, int>>();
 
-            string line = Console.ReadLine();
-            while (line != "end of contests")
+            string input = Console.ReadLine();
+            while (input != "end of contests")
             {
-                string[] tokens = line.Split(":").ToArray();
-                string contestName = tokens[0];
-                string contestPass = tokens[1];
+                string[] inputData = input.Split(':');
+                string contestTitle = inputData[0];
+                string contestPass = inputData[1];
 
-                contests[contestName] = contestPass;
+                contests[contestTitle] = contestPass;
 
-                line = Console.ReadLine();
+                input = Console.ReadLine();
             }
 
-            line = Console.ReadLine();
-            while (line != "end of submissions")
+            input = Console.ReadLine();
+
+            while (input != "end of submissions")
             {
-                string[] tokens = line.Split("=>").ToArray();
-                string contest = tokens[0];
-                string contestPass = tokens[1];
-                string username = tokens[2];
-                int points = int.Parse(tokens[3]);
+                string[] inputData = input.Split("=>");
+                string contestTitle = inputData[0];
+                string contestPass = inputData[1];
+                string userName = inputData[2];
+                int userPoints = int.Parse(inputData[3]);
 
-
-                if (contests.ContainsKey(contest) && contests[contest] == contestPass)
+                if (contests.ContainsKey(contestTitle) && contests[contestTitle] == contestPass)
                 {
-                    if (!users.ContainsKey(username))
+                    if (!submissions.ContainsKey(userName))
                     {
-                        users[username] = new Dictionary<string, int>();
+                        submissions[userName] = new Dictionary<string, int>();
                     }
 
-                    if (!users[username].ContainsKey(contest))
+                    if (!submissions[userName].ContainsKey(contestTitle))
                     {
-                        users[username][contest] = 0;
+                        submissions[userName][contestTitle] = 0;
                     }
 
-
-                    if (users[username][contest] < points)
+                    if (submissions[userName][contestTitle] < userPoints)
                     {
-                        users[username][contest] = points;
+                        submissions[userName][contestTitle] = userPoints;
                     }
-
-
-
                 }
 
-                line = Console.ReadLine();
+                input = Console.ReadLine();
             }
 
-            int maxPoints = 0;
-            string maxPointsUser = "";
-            foreach (var user in users)
+            int maxPointsUser = 0;
+            string maxPointsUserName = string.Empty;
+
+            foreach (var user in submissions)
             {
-                int sum = 0;
+                int sumPoints = 0;
                 foreach (var contest in user.Value)
                 {
-                    sum += contest.Value;
+                    sumPoints += contest.Value;
                 }
 
-                if (sum > maxPoints)
+                if (sumPoints > maxPointsUser)
                 {
-                    maxPoints = sum;
-                    maxPointsUser = user.Key;
+                    maxPointsUser = sumPoints;
+                    maxPointsUserName = user.Key;
                 }
             }
 
-            Console.WriteLine($"Best candidate is {maxPointsUser} with total {maxPoints} points.");
+            Console.WriteLine($"Best candidate is {maxPointsUserName} with total {maxPointsUser} points.");
+
             Console.WriteLine("Ranking:");
-            foreach (var user in users.OrderBy(x => x.Key))
+
+            foreach (var user in submissions.OrderBy(u => u.Key))
             {
                 Console.WriteLine(user.Key);
-                foreach (var contest in user.Value.OrderByDescending(x => x.Value))
+                
+                foreach (var contest in user.Value.OrderByDescending(u => u.Value))
                 {
-                    Console.WriteLine($"#  {contest.Key} -> {contest.Value}");
+                    Console.WriteLine($"# {contest.Key} -> {contest.Value}");
+
                 }
             }
         }
