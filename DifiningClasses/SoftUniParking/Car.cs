@@ -19,7 +19,6 @@ namespace SoftUniParking
         public int HorsePower { get; set; }
         public string RegistrationNumber { get; set; }
 
-
         public override string ToString()
         {
             string result = $"Make: {Make}" + Environment.NewLine;
