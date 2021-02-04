@@ -13,7 +13,7 @@ namespace CustomDataStructures
             list.Add(3);
             list.Insert(3, 22);
 
-            Console.WriteLine(list.Contains(22
+            Console.WriteLine(list.Contains(22));
         }
     }
 }
