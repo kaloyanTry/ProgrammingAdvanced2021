@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CarSalesman
+namespace CarSalesmanExercise
 {
     public class Program
     {
@@ -11,63 +11,60 @@ namespace CarSalesman
             List<Engine> engines = new List<Engine>();
             List<Car> cars = new List<Car>();
 
-            int enginesCount = int.Parse(Console.ReadLine());
-
-            for (int i = 0; i < enginesCount; i++)
+            int n = int.Parse(Console.ReadLine());
+            for (int i = 0; i < n; i++)
             {
-                string[] engineInfo = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries).ToArray();
+                string[] engineData = Console.ReadLine().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                string model = engineData[0];
+                string power = engineData[1];
 
-                string model = engineInfo[0];
-                string power = engineInfo[1];
-
-                if (engineInfo.Length == 2)
+                if (engineData.Length == 2)
                 {
                     engines.Add(new Engine(model, power));
                 }
-                else if (engineInfo.Length == 3)
+                else if (engineData.Length == 3)
                 {
-                    if (Char.IsDigit(engineInfo[2][0]))
+                    if (Char.IsDigit(engineData[2][0]))
                     {
-                        engines.Add(new Engine(model, power, engineInfo[2]));
+                        engines.Add(new Engine(model, power, engineData[2]));
                     }
                     else
                     {
-                        engines.Add(new Engine(model, power, "n/a", engineInfo[2]));
+                        engines.Add(new Engine(model, power, "n/a", engineData[2]));
                     }
                 }
-                else if (engineInfo.Length == 4)
+                else if (engineData.Length == 4)
                 {
-                    engines.Add(new Engine(model, power, engineInfo[2], engineInfo[3]));
+                    engines.Add(new Engine(model, power, engineData[2], engineData[3]));
                 }
             }
 
-            int carsCount = int.Parse(Console.ReadLine());
-
-            for (int i = 0; i < carsCount; i++)
+            int m = int.Parse(Console.ReadLine());
+            for (int i = 0; i < m; i++)
             {
-                string[] carInfo = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries).ToArray();
+                string[] carData = Console.ReadLine().Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
-                string model = carInfo[0];
-                Engine engine = engines.FirstOrDefault(x => x.Model == carInfo[1]);
+                string model = carData[0];
+                Engine engine = engines.FirstOrDefault(e => e.Model == carData[1]);
 
-                if (carInfo.Length == 2)
+                if (carData.Length == 2)
                 {
                     cars.Add(new Car(model, engine));
                 }
-                else if (carInfo.Length == 3)
+                else if (carData.Length == 3)
                 {
-                    if (Char.IsDigit(carInfo[2][0]))
+                    if (Char.IsDigit(carData[2][0]))
                     {
-                        cars.Add(new Car(model, engine, carInfo[2]));
+                        cars.Add(new Car(model, engine, carData[2]));
                     }
                     else
                     {
-                        cars.Add(new Car(model, engine, "n/a", carInfo[2]));
+                        cars.Add(new Car(model, engine, "n/a", carData[2]));
                     }
                 }
-                else if (carInfo.Length == 4)
+                else if (carData.Length == 4)
                 {
-                    cars.Add(new Car(model, engine, carInfo[2], carInfo[3]));
+                    cars.Add(new Car(model, engine, carData[2], carData[3]));
                 }
             }
 
