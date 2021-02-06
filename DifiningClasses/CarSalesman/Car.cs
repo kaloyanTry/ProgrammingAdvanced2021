@@ -1,19 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CarSalesman
+namespace CarSalesmanExercise
 {
     public class Car
     {
-        public string Model { get; set; }
-
-        public Engine Engine { get; set; }
-
-        public string Weight { get; set; }
-
-        public string Color { get; set; }
-
         public Car(string model, Engine engine, string weight = "n/a", string color = "n/a")
         {
             Model = model;
@@ -22,13 +14,24 @@ namespace CarSalesman
             Color = color;
         }
 
+        public string Model { get; set; }
+        public Engine Engine { get; set; }
+        public string Weight { get; set; }
+        public string Color { get; set; }
+
+
         public override string ToString()
         {
-            string str = Model + ":\n" + $"  {Engine?.Model}:\n" + $"    Power: {Engine?.Power}\n"
-                         + $"    Displacement: {Engine?.Displacement}\n" + $"    Efficiency: {Engine?.Efficiency}\n"
-                         + $"  Weight: {Weight}\n" + $"  Color: {Color}";
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"{Model}:");
+            sb.AppendLine($"  {Engine?.Model}:");
+            sb.AppendLine($"    Power: {Engine?.Power}");
+            sb.AppendLine($"    Displacement: {Engine?.Displacement}");
+            sb.AppendLine($"    Efficiency: {Engine?.Efficiency}");
+            sb.AppendLine($"  Weight: {Weight}");
+            sb.AppendLine($"  Color: {Color}");
 
-            return str;
+            return sb.ToString().Trim();
         }
     }
 }
