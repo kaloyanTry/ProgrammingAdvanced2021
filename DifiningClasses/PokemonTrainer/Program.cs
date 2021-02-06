@@ -1,44 +1,49 @@
-﻿using System;
-using System.Linq;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
-namespace PokemonTrainer
+namespace PokemonTrainerExercise
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
             Dictionary<string, Trainer> trainers = new Dictionary<string, Trainer>();
 
-            string line = Console.ReadLine();
-
-            while (line != "Tournament")
+            string input = Console.ReadLine();
+            while (input != "Tournament")
             {
-                string[] tokens = line.Split(" ", StringSplitOptions.RemoveEmptyEntries).ToArray();
+                string[] data = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
-                if (!trainers.ContainsKey(tokens[0]))
+                string trainerName = data[0];
+                string pokemonName = data[1];
+                string pokemonElement = data[2];
+                int pokemonHealth = int.Parse(data[3]);
+
+                if (!trainers.ContainsKey(trainerName))
                 {
-                    trainers[tokens[0]] = new Trainer(tokens[0]);
+                    trainers[trainerName] = new Trainer(trainerName);
                 }
 
-                trainers[tokens[0]].Pokemon.Add(new Pokemon(tokens[1], tokens[2], int.Parse(tokens[3])));
+                trainers[trainerName].Pokemon.Add(new Pokemon(pokemonName, pokemonElement, pokemonHealth));
 
-                line = Console.ReadLine();
+                input = Console.ReadLine();
             }
 
-            line = Console.ReadLine();
-            while (line != "End")
+            input = Console.ReadLine();
+            while (input != "End")
             {
                 foreach (var trainer in trainers)
                 {
-                    trainer.Value.CheckPokemonToBeAnElement(line);
+                    trainer.Value.CheckPokemonToBeAnElement(input);
                 }
-                line = Console.ReadLine();
+
+                input = Console.ReadLine();
             }
 
-            foreach (var kvp in trainers.OrderByDescending(x => x.Value.Badges))
+            foreach (var trainer in trainers.OrderByDescending(t => t.Value.Badges))
             {
-                Console.WriteLine(kvp.Value);
+                Console.WriteLine(trainer.Value);
             }
         }
     }
