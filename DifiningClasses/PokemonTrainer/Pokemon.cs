@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace PokemonTrainer
+namespace PokemonTrainerExercise
 {
     public class Pokemon
     {
@@ -15,7 +15,6 @@ namespace PokemonTrainer
 
         public string Name { get; set; }
         public string Element { get; set; }
-
         public int Health { get; set; }
     }
 }
