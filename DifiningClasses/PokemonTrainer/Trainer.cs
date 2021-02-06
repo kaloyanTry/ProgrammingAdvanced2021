@@ -1,9 +1,7 @@
-﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
 
-namespace PokemonTrainer
+namespace PokemonTrainerExercise
 {
     public class Trainer
     {
@@ -13,10 +11,10 @@ namespace PokemonTrainer
             Badges = 0;
             Pokemon = new List<Pokemon>();
         }
+
         public string Name { get; set; }
         public int Badges { get; set; }
         public List<Pokemon> Pokemon { get; set; }
-
 
         public void CheckPokemonToBeAnElement(string element)
         {
