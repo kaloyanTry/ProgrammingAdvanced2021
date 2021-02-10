@@ -8,30 +8,38 @@ namespace MatrixShuffling
     {
         static void Main(string[] args)
         {
-            int[] input = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
-            int rows = input[0];
-            int cols = input[1];
-            
+            int[] rc = Console.ReadLine().Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
+            int rows = rc[0];
+            int cols = rc[1];
+
             string[,] matrix = new string[rows, cols];
 
-            fillMatrix(matrix);
+            CreateMatrix(matrix);
 
-            string command = Console.ReadLine();
-            while (command != "END")
+            while (true)
             {
-                string[] arguments = command.Split(" ", StringSplitOptions.RemoveEmptyEntries).ToArray();
-                if (arguments[0] == "swap" && arguments.Length == 5)
-                {
-                    int row1 = int.Parse(arguments[1]);
-                    int col1 = int.Parse(arguments[2]);
-                    int row2 = int.Parse(arguments[3]);
-                    int col2 = int.Parse(arguments[4]);
+                string[] commands = Console.ReadLine().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                string command = commands[0];
 
-                    if (IsValidCommand(row1, col1, matrix) && IsValidCommand(row2, col2, matrix))
+                if (command == "END")
+                {
+                    break;
+                }
+
+                if (command == "swap" && commands.Length == 5)
+                {
+                    int row1 = int.Parse(commands[1]);
+                    int row2 = int.Parse(commands[3]);
+                    int col1 = int.Parse(commands[2]);
+                    int col2 = int.Parse(commands[4]);
+
+                    bool IsValid = (row1 >= 0 && row2 < matrix.GetLength(0)) && (col1 >= 0 && col2 < matrix.GetLength(1));
+
+                    if(IsValid)
                     {
-                        string temp = matrix[row1, col1];
+                        string temp1 = matrix[row1, col1];
                         matrix[row1, col1] = matrix[row2, col2];
-                        matrix[row2, col2] = temp;
+                        matrix[row2, col2] = temp1;
 
                         PrintMatrix(matrix);
                     }
@@ -45,21 +53,23 @@ namespace MatrixShuffling
                     Console.WriteLine("Invalid input!");
                 }
 
-                command = Console.ReadLine();
             }
+
         }
 
-        private static void fillMatrix(string[,] matrix)
+        private static void CreateMatrix(string[,] matrix)
         {
             for (int row = 0; row < matrix.GetLength(0); row++)
             {
-                string[] values = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries).ToArray();
+                string[] data = Console.ReadLine().Split(' ', StringSplitOptions.RemoveEmptyEntries).ToArray();
+                
                 for (int col = 0; col < matrix.GetLength(1); col++)
                 {
-                    matrix[row, col] = values[col];
+                    matrix[row, col] = data[col];
                 }
             }
         }
+
         private static void PrintMatrix(string[,] matrix)
         {
             for (int row = 0; row < matrix.GetLength(0); row++)
@@ -68,18 +78,9 @@ namespace MatrixShuffling
                 {
                     Console.Write(matrix[row, col] + " ");
                 }
-
+                
                 Console.WriteLine();
             }
-        }
-        private static bool IsValidCommand(int row, int col, string[,] matrix)
-        {
-            if ((row >= 0 && row < matrix.GetLength(0)) && (col >= 0 && col < matrix.GetLength(1)))
-            {
-                return true;
-            }
-
-            return false;
         }
     }
 }
