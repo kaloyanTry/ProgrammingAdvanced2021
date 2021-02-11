@@ -48,7 +48,15 @@ namespace BakeryOpenning
 
         public string Report()
         {
-            return $"employees working at bakery {Name}:";
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine($"employees working at bakery {Name}:");
+            foreach (Employee employee in data)
+            {
+                sb.AppendLine(string.Join(Environment.NewLine, employee));
+            }
+
+            return sb.ToString().Trim();
         }
     }
 }
