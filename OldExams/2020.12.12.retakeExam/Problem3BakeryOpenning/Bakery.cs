@@ -17,6 +17,7 @@ namespace BakeryOpenning
         }
 
         public string Name { get; set; }
+        
         public int Capacity { get; set; }
 
         public int Count => data.Count;
@@ -29,6 +30,7 @@ namespace BakeryOpenning
         public bool Remove(string name)
         {
             Employee employee = data.FirstOrDefault(e => e.Name == name);
+            
             if (employee == null)
             {
                 return false;
