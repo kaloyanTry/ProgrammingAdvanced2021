@@ -42,7 +42,6 @@ namespace Cooking
                 int currentLiquid = liquids.Peek();
                 int currentIngradient = ingredients.Peek();
                 bool isCooking = false;
-
                 sum = currentLiquid + currentIngradient;
 
                 if (sum == breadValue)
