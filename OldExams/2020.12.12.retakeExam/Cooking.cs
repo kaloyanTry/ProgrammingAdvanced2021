@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -33,51 +33,54 @@ namespace Cooking
             int breadCount = 0;
             int cakeCount = 0;
             int pastryCount = 0;
-            int fruitPieCount = 0;
+            int fruitPieCount = 0;        
 
             int sum = 0;
 
-            while (true)
+            while (liquids.Count > 0 && ingredients.Count > 0)
             {
-                if (liquids.Count == 0 || ingredients.Count == 0)
-                {
-                    break;
-                }
-                sum = liquids.Peek() + ingredients.Peek();
+                int currentLiquid = liquids.Peek();
+                int currentIngradient = ingredients.Peek();
+                bool isCooking = false;
+
+                sum = currentLiquid + currentIngradient;
+
                 if (sum == breadValue)
                 {
                     breadCount++;
-                    liquids.Dequeue();
-                    ingredients.Pop();
+                    isCooking = true;
                 }
                 else if (sum == cakeValue)
                 {
                     cakeCount++;
-                    liquids.Dequeue();
-                    ingredients.Pop();
+                    isCooking = true;
                 }
                 else if (sum == pastryValue)
                 {
                     pastryCount++;
-                    liquids.Dequeue();
-                    ingredients.Pop();
+                    isCooking = true;
                 }
                 else if (sum == fruitPieValue)
                 {
                     fruitPieCount++;
-                    liquids.Dequeue();
+                    isCooking = true;
+                }
+
+                if (isCooking)
+                {
                     ingredients.Pop();
+                    liquids.Dequeue();
                 }
                 else
                 {
                     liquids.Dequeue();
-                    var increaseValue = ingredients.Peek() + 3;
+                    currentIngradient += 3;
                     ingredients.Pop();
-                    ingredients.Push(increaseValue);
-                }    
+                    ingredients.Push(currentIngradient);
+                }
             }
 
-            if (liquids.Count == 0 && ingredients.Count == 0)
+            if (breadCount >= 1 && cakeCount >= 1 && pastryCount >= 1 && fruitPieCount >= 1)
             {
                 Console.WriteLine("Wohoo! You succeeded in cooking all the food!");
             }
