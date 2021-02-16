@@ -50,7 +50,7 @@ namespace Revolt
                         {
                             playerRow = matrix.GetLength(0) - 1;
                         }
-                        if (playerCol == matrix.GetLength(1) - 1)
+                        if (playerCol == matrix.GetLength(1))
                         {
                             playerCol = 0;
                         }
