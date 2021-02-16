@@ -1,29 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System;
 
-namespace Bee
+namespace MatrixBee
 {
-    class Bee
+    class MatrixBee
     {
         static void Main(string[] args)
         {
             int n = int.Parse(Console.ReadLine());
 
             char[,] matrix = new char[n, n];
-
-            int beeRow = 0;
-            int beeCol = 0;
-            int flowers = 0;
+            int beeRow = -1;
+            int beeCol = -1;
+            int flowersCount = 0;
 
             for (int row = 0; row < n; row++)
             {
-                string currentRow = Console.ReadLine();
+                string inputMatrix = Console.ReadLine();
                 for (int col = 0; col < n; col++)
                 {
-                    matrix[row, col] = currentRow[col];
+                    matrix[row, col] = inputMatrix[col];
 
-                    //find bee possition:
                     if (matrix[row, col] == 'B')
                     {
                         beeRow = row;
@@ -32,14 +28,14 @@ namespace Bee
                 }
             }
 
-            string input = Console.ReadLine();
-            while (input != "End")
+            string command = Console.ReadLine();
+            while (command != "End")
             {
                 matrix[beeRow, beeCol] = '.';
-                beeRow = MoveRow(beeRow, input);
-                beeCol = MoveCol(beeCol, input);
 
-                if (!IsPossitionValid(beeRow, beeCol, n , n))
+                MoveBee(ref beeRow, ref beeCol, command);
+
+                if ((beeRow < 0 || beeRow >= matrix.GetLength(0)) || (beeCol < 0 || beeCol >= matrix.GetLength(1)))
                 {
                     Console.WriteLine("The bee got lost!");
                     break;
@@ -47,39 +43,44 @@ namespace Bee
 
                 if (matrix[beeRow, beeCol] == 'f')
                 {
-                    flowers++;
+                    flowersCount++;
                 }
 
                 if (matrix[beeRow, beeCol] == 'O')
                 {
                     matrix[beeRow, beeCol] = '.';
-                    beeRow = MoveRow(beeRow, input);
-                    beeCol = MoveCol(beeCol, input);
-                    if (!IsPossitionValid(beeRow, beeCol, n, n))
+                    MoveBee(ref beeRow, ref beeCol, command);
+
+                    if ((beeRow < 0 || beeRow >= matrix.GetLength(0)) || (beeCol < 0 || beeCol >= matrix.GetLength(1)))
                     {
                         Console.WriteLine("The bee got lost!");
                         break;
                     }
                     if (matrix[beeRow, beeCol] == 'f')
                     {
-                        flowers++;
+                        flowersCount++;
                     }
                 }
+
                 matrix[beeRow, beeCol] = 'B';
 
-                input = Console.ReadLine();
+                command = Console.ReadLine();
             }
 
-            if (flowers < 5)
+            if (flowersCount < 5)
             {
-                Console.WriteLine($"The bee couldn't pollinate the flowers, she needed {5 - flowers} flowers more");
+                Console.WriteLine($"The bee couldn't pollinate the flowers, she needed {5 - flowersCount} flowers more");
             }
             else
             {
-                Console.WriteLine($"Great job, the bee managed to pollinate {flowers} flowers!");
+                Console.WriteLine($"Great job, the bee managed to pollinate {flowersCount} flowers!");
             }
 
+            PrintMatrix(matrix);
+        }
 
+        private static void PrintMatrix(char[,] matrix)
+        {
             for (int row = 0; row < matrix.GetLength(0); row++)
             {
                 for (int col = 0; col < matrix.GetLength(1); col++)
@@ -90,46 +91,24 @@ namespace Bee
             }
         }
 
-        public static bool IsPossitionValid(int row, int col, int rows, int cols)
+        private static void MoveBee(ref int beeRow, ref int beeCol, string command)
         {
-            if (row < 0 || row >= rows)
+            if (command == "up")
             {
-                return false;
+                beeRow -= 1;
             }
-            if (col < 0 || col >= cols)
+            else if (command == "down")
             {
-                return false;
+                beeRow += 1;
             }
-
-            return true;
-        }
-
-        public static int MoveRow(int row, string movement)
-        {
-            if (movement == "up")
+            else if (command == "left")
             {
-                return row - 1;
+                beeCol -= 1;
             }
-            if (movement == "down")
+            else if (command == "right")
             {
-                return row + 1;
+                beeCol += 1;
             }
-
-            return row;
-        }
-
-        public static int MoveCol(int col, string movement)
-        {
-            if (movement == "left")
-            {
-                return col - 1;
-            }
-            if (movement == "right")
-            {
-                return col + 1;
-            }
-
-            return col;
         }
     }
 }
