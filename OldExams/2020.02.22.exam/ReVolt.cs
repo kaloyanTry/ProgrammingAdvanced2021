@@ -1,25 +1,24 @@
-﻿using System;
+using System;
 
-namespace Revolt
+namespace MatrixReVolt
 {
-    class ReVolt
+    class MatrixRevolt
     {
         static void Main(string[] args)
         {
             int n = int.Parse(Console.ReadLine());
-            int c = int.Parse(Console.ReadLine());
+            int countCommands = int.Parse(Console.ReadLine());
 
             char[,] matrix = new char[n, n];
-
             int playerRow = -1;
-            int playerCol = -1;            
+            int playerCol = -1;
 
             for (int row = 0; row < n; row++)
             {
-                string inputRow = Console.ReadLine();
+                string input = Console.ReadLine();
                 for (int col = 0; col < n; col++)
                 {
-                    matrix[row, col] = inputRow[col];
+                    matrix[row, col] = input[col];
 
                     if (matrix[row, col] == 'f')
                     {
@@ -29,50 +28,29 @@ namespace Revolt
                 }
             }
 
-
-            for (int i = 0; i < c; i++)
+            for (int i = 0; i < countCommands; i++)
             {
                 string command = Console.ReadLine();
                 matrix[playerRow, playerCol] = '-';
 
-                playerRow = MoveRow(playerRow, command);
-                playerCol = MoveCol(playerCol, command);
+                MoveMethod(ref playerRow, ref playerCol, command);
+
                 for (int row = 0; row < matrix.GetLength(0); row++)
                 {
                     for (int col = 0; col < matrix.GetLength(1); col++)
                     {
-
-                        if (playerRow == matrix.GetLength(0))
-                        {
-                            playerRow = 0;
-                        }
-                        if (playerRow < 0)
-                        {
-                            playerRow = matrix.GetLength(0) - 1;
-                        }
-                        if (playerCol == matrix.GetLength(1))
-                        {
-                            playerCol = 0;
-                        }
-                        if (playerCol < 0)
-                        {
-                            playerCol = matrix.GetLength(1) - 1;
-                        }
+                        RevoltMethod(matrix, ref playerRow, ref playerCol);
 
                         if (matrix[playerRow, playerCol] == 'B')
                         {
-                            playerRow = MoveRow(playerRow, command);
-                            playerCol = MoveCol(playerCol, command);
-                            matrix[playerRow, playerCol] = 'f';
+                            MoveMethod(ref playerRow, ref playerCol, command);
+                            RevoltMethod(matrix, ref playerRow, ref playerCol);
                         }
-
                         if (matrix[playerRow, playerCol] == 'T')
                         {
-                            playerRow = MoveBackRow(playerRow, command);
-                            playerCol = MoveBackCol(playerCol, command);
-                            matrix[playerRow, playerCol] = 'f';
+                            MoveBackMethod(ref playerRow, ref playerCol, command);
+                            RevoltMethod(matrix, ref playerRow, ref playerCol);
                         }
-
                         if (matrix[playerRow, playerCol] == 'F')
                         {
                             Console.WriteLine("Player won!");
@@ -87,62 +65,65 @@ namespace Revolt
             }
 
             Console.WriteLine("Player lost!");
-
             PrintMatrix(matrix);
         }
-        public static int MoveRow(int row, string movement)
-        {
-            if (movement == "up")
-            {
-                return row - 1;
-            }
-            if (movement == "down")
-            {
-                return row + 1;
-            }
 
-            return row;
+        private static void RevoltMethod(char[,] matrix, ref int playerRow, ref int playerCol)
+        {
+            if (playerRow == matrix.GetLength(0))
+            {
+                playerRow = 0;
+            }
+            else if (playerRow < 0)
+            {
+                playerRow = matrix.GetLength(0) - 1;
+            }
+            else if (playerCol == matrix.GetLength(1))
+            {
+                playerCol = 0;
+            }
+            else if (playerCol < 0)
+            {
+                playerCol = matrix.GetLength(1) - 1;
+            }
         }
-
-        public static int MoveCol(int col, string movement)
+        private static void MoveMethod(ref int playerRow, ref int playerCol, string command)
         {
-            if (movement == "left")
+            if (command == "up")
             {
-                return col - 1;
+                playerRow -= 1;
             }
-            if (movement == "right")
+            else if (command == "down")
             {
-                return col + 1;
+                playerRow += 1;
             }
-
-            return col;
+            else if (command == "left")
+            {
+                playerCol -= 1;
+            }
+            else if (command == "right")
+            {
+                playerCol += 1;
+            }
         }
-        public static int MoveBackRow(int row, string movement)
+        private static void MoveBackMethod(ref int playerRow, ref int playerCol, string command)
         {
-            if (movement == "up")
+            if (command == "up")
             {
-                return row + 1;
+                playerRow += 1;
             }
-            if (movement == "down")
+            else if (command == "down")
             {
-                return row - 1;
+                playerRow -= 1;
             }
-
-            return row;
-        }
-
-        public static int MoveBackCol(int col, string movement)
-        {
-            if (movement == "left")
+            else if (command == "left")
             {
-                return col + 1;
+                playerCol += 1;
             }
-            if (movement == "right")
+            else if (command == "right")
             {
-                return col - 1;
+                playerCol -= 1;
             }
-
-            return col;
         }
         private static void PrintMatrix(char[,] matrix)
         {
