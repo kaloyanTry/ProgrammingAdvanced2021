@@ -1,75 +1,73 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Console2020._07._27
+namespace Bombs
 {
     class Bombs
     {
         static void Main(string[] args)
         {
-            int[] inputBombs = Console.ReadLine().Split(", ").Select(int.Parse).ToArray();
-            int[] inputCasing = Console.ReadLine().Split(", ").Select(int.Parse).ToArray();
+            int[] firstInput = Console.ReadLine().Split(", ", StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
+            int[] secondInput = Console.ReadLine().Split(", ", StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
 
-            Queue<int> bombEffectQueue = new Queue<int>(inputBombs.Length);
-            Stack<int> bombCasingStack = new Stack<int>(inputCasing.Length);
+            Queue<int> effects = new Queue<int>(firstInput.Length);
+            Stack<int> casings = new Stack<int>(secondInput.Length);
 
-            for (int i = 0; i < inputBombs.Length; i++)
+            for (int i = 0; i < firstInput.Length; i++)
             {
-                bombEffectQueue.Enqueue(inputBombs[i]);
+                effects.Enqueue(firstInput[i]);
             }
-
-            for (int i = 0; i < inputCasing.Length; i++)
+            for (int i = 0; i < secondInput.Length; i++)
             {
-                bombCasingStack.Push(inputCasing[i]);
+                casings.Push(secondInput[i]);
             }
-
             int daturaCount = 0;
             int cheryCount = 0;
             int smokeCount = 0;
-            int decrease = 0;
+            int decreaseCasing = 0;
 
-            while (bombEffectQueue.Count > 0 && bombCasingStack.Count > 0)
+            while (effects.Count > 0 && casings.Count > 0)
             {
                 if (daturaCount >= 3 && cheryCount >= 3 && smokeCount >= 3)
                 {
                     break;
                 }
 
-                int currentEffect = bombEffectQueue.Peek();
-                int currentCase = bombCasingStack.Peek() - decrease;
-                bool bombCreated = false;
+                int currEffect = effects.Peek();
+                int currCasing = casings.Peek() - decreaseCasing;
+                bool isBomb = false;
 
-                if (currentEffect + currentCase == 40)
+                if (currCasing + currEffect == 40)
                 {
                     daturaCount++;
-                    bombCreated = true;
-
+                    isBomb = true;
                 }
-                else if (currentEffect + currentCase == 60)
+                else if (currCasing + currEffect == 60)
                 {
                     cheryCount++;
-                    bombCreated = true;
+                    isBomb = true;
                 }
-                else if (currentEffect + currentCase == 120)
+                else if (currCasing + currEffect == 120)
                 {
                     smokeCount++;
-                    bombCreated = true;              
+                    isBomb = true;
                 }
-                if (bombCreated)
+
+                if (isBomb)
                 {
-                    bombEffectQueue.Dequeue();
-                    bombCasingStack.Pop();
-                    decrease = 0;
+                    effects.Dequeue();
+                    casings.Pop();
+                    decreaseCasing = 0;
                 }
-                else if (currentCase <= 0)
+                else if (currCasing <= 0)
                 {
-                    bombCasingStack.Pop();
-                    decrease = 0;
+                    casings.Pop();
+                    decreaseCasing = 0;
                 }
                 else
                 {
-                    decrease += 5;
+                    decreaseCasing += 5;
                 }
             }
 
@@ -82,22 +80,24 @@ namespace Console2020._07._27
                 Console.WriteLine("You don't have enough materials to fill the bomb pouch.");
             }
 
-            if (bombEffectQueue.Count == 0)
+            if (effects.Count == 0)
             {
                 Console.WriteLine("Bomb Effects: empty");
             }
             else
             {
-                Console.WriteLine($"Bomb Effects: {String.Join(", ", bombEffectQueue)}");
+                Console.Write("Bomb Effects: ");
+                Console.WriteLine(string.Join(", ", effects));
             }
 
-            if (bombCasingStack.Count == 0)
+            if (casings.Count == 0)
             {
                 Console.WriteLine("Bomb Casings: empty");
             }
             else
             {
-                Console.WriteLine($"Bomb Casings: {String.Join(", ", bombCasingStack)}");
+                Console.Write("Bomb Casings: ");
+                Console.WriteLine(string.Join(", ", casings));
             }
 
             Console.WriteLine($"Cherry Bombs: {cheryCount}");
