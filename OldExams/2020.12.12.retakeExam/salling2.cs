@@ -18,7 +18,6 @@ namespace ExamSelling
             int secondPillarRow = -1;
             int secondPillarCol = -1;
 
-
             for (int row = 0; row < n; row++)
             {
                 string inputMatrix = Console.ReadLine();
@@ -50,7 +49,6 @@ namespace ExamSelling
 
             while (true)
             {
-
                 string command = Console.ReadLine();
                 matrix[sellerRow, sellerCol] = '-';
 
@@ -61,7 +59,6 @@ namespace ExamSelling
                     Console.WriteLine("Bad news, you are out of the bakery.");
                     break;
                 }
-
 
                 if (char.IsDigit(matrix[sellerRow, sellerCol]))
                 {
