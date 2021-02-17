@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System;
 
-namespace Selling
+namespace ExamSelling
 {
     class Selling
     {
@@ -11,130 +9,99 @@ namespace Selling
             int n = int.Parse(Console.ReadLine());
 
             char[,] matrix = new char[n, n];
-
-            int rowSeller = 0;
-            int colSeller = 0;
+            int sellerRow = -1;
+            int sellerCol = -1;
             int money = 0;
 
             for (int row = 0; row < n; row++)
             {
-                string input = Console.ReadLine();
+                string inputMatrix = Console.ReadLine();
                 for (int col = 0; col < n; col++)
                 {
-                    matrix[row, col] = input[col];
+                    matrix[row, col] = inputMatrix[col];
+
                     if (matrix[row, col] == 'S')
                     {
-                        rowSeller = row;
-                        colSeller = col;
+                        sellerRow = row;
+                        sellerCol = col;
                     }
                 }
             }
 
             while (true)
             {
+
                 string command = Console.ReadLine();
-                if (command == "up")
+                matrix[sellerRow, sellerCol] = '-';
+
+                MovingMethod(ref sellerRow, ref sellerCol, command);
+
+                if((sellerRow < 0 || sellerRow >= matrix.GetLength(0)) || (sellerCol < 0 || sellerCol >= matrix.GetLength(1)))
                 {
-                    matrix[rowSeller, colSeller] = '-'; 
-                    rowSeller -= 1; 
-                    if (rowSeller >= 0) 
-                    {
-                        SnakeMoves(n, matrix, ref rowSeller, ref colSeller, ref money);
-                    }
-                    else 
-                    {
-                        Console.WriteLine("Bad news, you are out of the bakery.");
-                        Console.WriteLine($"Money: {money}");
-                        break;
-                    }
+                    Console.WriteLine("Bad news, you are out of the bakery.");
+                    break;
                 }
-                else if (command == "down")
+
+
+                if (char.IsDigit(matrix[sellerRow, sellerCol]))
                 {
-                    matrix[rowSeller, colSeller] = '-'; 
-                    rowSeller += 1;
-                    if (rowSeller < n) 
-                    {
-                        SnakeMoves(n, matrix, ref rowSeller, ref colSeller, ref money);
-                    }
-                    else 
-                    {
-                        Console.WriteLine("Bad news, you are out of the bakery.");
-                        Console.WriteLine($"Money: {money}");
-                        break;
-                    }
+                    money += int.Parse(matrix[sellerRow, sellerCol].ToString());
                 }
-                else if (command == "left")
+                else if (matrix[sellerRow, sellerCol] == 'O')
                 {
-                    matrix[rowSeller, colSeller] = '-'; 
-                    colSeller = colSeller - 1; 
-                    if (colSeller >= 0) 
+                    matrix[sellerRow, sellerCol] = '-';
+
+                    for (int row = 0; row < matrix.GetLength(0); row++)
                     {
-                        SnakeMoves(n, matrix, ref rowSeller, ref colSeller, ref money);
-                    }
-                    else 
-                    {
-                        Console.WriteLine("Bad news, you are out of the bakery.");
-                        Console.WriteLine($"Money: {money}");
-                        break;
-                    }
-                }
-                else if (command == "right")
-                {
-                    matrix[rowSeller, colSeller] = '-'; 
-                    colSeller = colSeller + 1; 
-                    if (colSeller < n) 
-                    {
-                        SnakeMoves(n, matrix, ref rowSeller, ref colSeller, ref money);
-                    }
-                    else
-                    {
-                        Console.WriteLine("Bad news, you are out of the bakery.");
-                        Console.WriteLine($"Money: {money}");
-                        break;
+                        for (int col = 0; col < matrix.GetLength(1); col++)
+                        {
+                            if (matrix[row, col] == 'O')
+                            {
+                                matrix[row, col] = 'O';
+                                sellerRow = row;
+                                sellerCol = col;
+                            }
+                        }
                     }
                 }
 
                 if (money >= 50)
                 {
-                    Console.WriteLine("Good news! You succeeded in collecting enough money!");
-                    Console.WriteLine($"Money: {money}");
-                    matrix[rowSeller, colSeller] = 'S';
+                    Console.WriteLine("Good news! You succeeded in collecting enough money!");      
+                    matrix[sellerRow, sellerCol] = 'S';
                     break;
                 }
-
             }
-            PrintMatrix(n, matrix);
+
+            Console.WriteLine($"Money: {money}");
+            PrintMatrix(matrix);
         }
 
-        private static void SnakeMoves(int n, char[,] matrix, ref int row, ref int col, ref int money)
+        private static void MovingMethod(ref int sellerRow, ref int sellerCol, string command)
         {
-            if (char.IsDigit(matrix[row, col]))
+            if (command == "up")
             {
-                money += int.Parse(matrix[row, col].ToString());
+                sellerRow -= 1;
             }
-            else if (matrix[row, col] == 'O')
+            else if (command == "down")
             {
-                matrix[row, col] = '-';
-                for (int rows = 0; rows < n; rows++)
-                {
-                    for (int cols = 0; cols < n; cols++)
-                    {
-                        if (matrix[rows, cols] == 'O')
-                        {
-                            matrix[rows, cols] = '-';
-                            row = rows;
-                            col = cols;
-                        }
-                    }
-                }
+                sellerRow += 1;
+            }
+            else if (command == "left")
+            {
+                sellerCol -= 1;
+            }
+            else if (command == "right")
+            {
+                sellerCol += 1;
             }
         }
 
-        public static void PrintMatrix(int n, char[,] matrix)
+        private static void PrintMatrix(char[,] matrix)
         {
-            for (int row = 0; row < n; row++)
+            for (int row = 0; row < matrix.GetLength(0); row++)
             {
-                for (int col = 0; col < n; col++)
+                for (int col = 0; col < matrix.GetLength(1); col++)
                 {
                     Console.Write(matrix[row, col]);
                 }
