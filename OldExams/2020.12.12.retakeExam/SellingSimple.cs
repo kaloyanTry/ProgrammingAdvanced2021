@@ -7,7 +7,7 @@ namespace SellingSimple
         static void Main(string[] args)
         {
             int n = int.Parse(Console.ReadLine());
-
+            
             char[,] matrix = new char[n, n];
             int sellerRow = -1;
             int sellerCol = -1;
