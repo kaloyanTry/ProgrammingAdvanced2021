@@ -11,6 +11,7 @@ namespace ConsoleExams
 
             int[] firstInput = Console.ReadLine().Split(", ", StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
             int[] secondInput = Console.ReadLine().Split(", ", StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
+            
             Stack<int> lilies = new Stack<int>(firstInput.Length);
             Queue<int> roses = new Queue<int>(secondInput.Length);
 
@@ -18,6 +19,7 @@ namespace ConsoleExams
             {
                 lilies.Push(firstInput[i]);
             }
+            
             for (int i = 0; i < secondInput.Length; i++)
             {
                 roses.Enqueue(secondInput[i]);
