@@ -69,7 +69,7 @@ namespace ExamSelling
                 {
                     matrix[sellerRow, sellerCol] = '-';
 
-                    if (firstPillarRow == secondPillarRow && firstPillarCol == sellerCol)
+                    if (firstPillarRow == sellerRow && firstPillarCol == sellerCol)
                     {
                         sellerRow = firstPillarRow;
                         sellerCol = firstPillarCol;
