@@ -47,7 +47,8 @@ namespace ExamSelling
                 {
                     money += int.Parse(matrix[sellerRow, sellerCol].ToString());
                 }
-                else if (matrix[sellerRow, sellerCol] == 'O')
+                
+                if (matrix[sellerRow, sellerCol] == 'O')
                 {
                     matrix[sellerRow, sellerCol] = '-';
 
