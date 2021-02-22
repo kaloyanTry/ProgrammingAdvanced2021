@@ -1,19 +1,23 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
-namespace CountUpperWords
+namespace ConsoleFunctional
 {
-    class CountUpperWords
+    class ProgramFunctional
     {
         static void Main(string[] args)
         {
+            //input:
+            string text = Console.ReadLine();
+
+            //Func:
             Func<string, bool> filter = text => Char.IsUpper(text[0]);
 
-            string text = Console.ReadLine();
-            string[] words = text.Split(" ", StringSplitOptions.RemoveEmptyEntries);
-
+            string[] words = text.Split(' ', StringSplitOptions.RemoveEmptyEntries);
             words = words.Where(filter).ToArray();
 
+            //Print:
             foreach (var word in words)
             {
                 Console.WriteLine(word);
