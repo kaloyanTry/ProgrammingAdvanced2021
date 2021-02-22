@@ -15,6 +15,7 @@ namespace ConsoleFunctional
             Func<string, bool> filter = text => Char.IsUpper(text[0]);
 
             string[] words = text.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            
             words = words.Where(filter).ToArray();
 
             //Print:
