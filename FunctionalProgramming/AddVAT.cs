@@ -9,12 +9,11 @@ namespace AddVAT
         {
             decimal[] numbers = Console.ReadLine()
                 .Split(", ", StringSplitOptions.RemoveEmptyEntries)
-                .Select(decimal.Parse)
-                .Select(n => n +(n * 0.2m)).ToArray();
+                .Select(decimal.Parse).Select(n => n * 1.2m).ToArray();
 
-            foreach (var number in numbers)
+            foreach (var num in numbers)
             {
-                Console.WriteLine($"{number:F2}");
+                Console.WriteLine($"{num:F2}");
             }
         }
     }
