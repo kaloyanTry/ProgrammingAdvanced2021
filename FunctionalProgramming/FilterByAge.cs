@@ -11,7 +11,7 @@ namespace FilterByAge
     {
         static void Main(string[] args)
         {
-            int n = int.Parse(Console.ReadLine());
+          int n = int.Parse(Console.ReadLine());
 
             Person[] person = new Person[n];
 
@@ -22,23 +22,20 @@ namespace FilterByAge
                 person[i] = new Person();
                 person[i].Name = input[0];
                 person[i].Age = int.Parse(input[1]);
-
-
             }
 
             string filter = Console.ReadLine();
             int filterAge = int.Parse(Console.ReadLine());
 
             Func<Person, bool> condition = GetAgeCondition(filter, filterAge);
-
             Action<Person> formatter = GetFormatter(Console.ReadLine());
 
-            PrintPersons(person, condition, formatter);
+            PrintPerson(person, condition, formatter);
         }
 
         static Action<Person> GetFormatter(string format)
         {
-            switch(format)
+            switch (format)
             {
                 case "name":
                     return p => { Console.WriteLine($"{p.Name}"); };
@@ -46,6 +43,7 @@ namespace FilterByAge
                     return p => { Console.WriteLine($"{p.Age}"); };
                 case "name age":
                     return p => { Console.WriteLine($"{p.Name} - {p.Age}"); };
+
                 default:
                     return null;
             }
@@ -62,15 +60,14 @@ namespace FilterByAge
             }
         }
 
-        static void PrintPersons(Person[] perosons, Func<Person, bool> condition, Action<Person> formatter)
+        static void PrintPerson(Person[] persons, Func<Person, bool> condition, Action<Person> formatter)
         {
-            foreach (var person in perosons)
+            foreach (var person in persons)
             {
                 if (condition(person))
                 {
                     formatter(person);
                 }
-
             }
         }
     }
