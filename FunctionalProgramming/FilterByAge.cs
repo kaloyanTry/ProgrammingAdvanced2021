@@ -28,9 +28,21 @@ namespace FilterByAge
             int filterAge = int.Parse(Console.ReadLine());
 
             Func<Person, bool> condition = GetAgeCondition(filter, filterAge);
+            
             Action<Person> formatter = GetFormatter(Console.ReadLine());
 
             PrintPerson(person, condition, formatter);
+        }  
+        
+        static Func<Person, bool> GetAgeCondition(string filter, int filterAge)
+        {
+            switch (filter)
+            {
+                case "younger": return p => p.Age < filterAge;
+                case "older": return p => p.Age >= filterAge;
+                default:
+                    return null;
+            }
         }
 
         static Action<Person> GetFormatter(string format)
@@ -44,17 +56,6 @@ namespace FilterByAge
                 case "name age":
                     return p => { Console.WriteLine($"{p.Name} - {p.Age}"); };
 
-                default:
-                    return null;
-            }
-        }
-
-        static Func<Person, bool> GetAgeCondition(string filter, int filterAge)
-        {
-            switch (filter)
-            {
-                case "younger": return p => p.Age < filterAge;
-                case "older": return p => p.Age >= filterAge;
                 default:
                     return null;
             }
