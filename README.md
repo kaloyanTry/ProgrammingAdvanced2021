@@ -3,13 +3,4 @@
 # AdvancedCSharp
 Advanced Course with C# //SoftUni
 
-1. Inferitance: Lab and Exercises [link](https://github.com/kaloyanTry/OOP2021/tree/main/Inheritance)
-2. Encapsulation: Lab and Exercises [link](https://github.com/kaloyanTry/OOP2021/tree/main/Encapsulation)
-3. Abstraction: Lab and Exercises [link](https://github.com/kaloyanTry/OOP2021/tree/main/Inheritance)
-4. Polimorphism: Lab and Exercises [link](https://github.com/kaloyanTry/OOP2021/tree/main/Polimorphism)
-5. Exceptions: Exercises [link](https://github.com/kaloyanTry/OOP2021/tree/main/Exceptions)
-6. SOLID: Lab and Exercises [link](https://github.com/kaloyanTry/OOP2021/tree/main/Solid)
-7. Reflection: Lab and Exercises [link](https://github.com/kaloyanTry/OOP2021/tree/main/Reflection)
-8. Unit Testing: Lab and Exercises [link](https://github.com/kaloyanTry/OOP2021/tree/main/UnitTesting)
-9. Mocking and Test Driven: Lab and Exercises [link](https://github.com/kaloyanTry/OOP2021/tree/main/MokingTestDriven)
-10. Design Patterns: Lab and Exercises [link](https://github.com/kaloyanTry/OOP2021/tree/main/DesignPatterns)
+1. StacksQueues: Lab and Exercises [link](https://github.com/kaloyanTry/OOP2021/tree/main/Inheritance)
