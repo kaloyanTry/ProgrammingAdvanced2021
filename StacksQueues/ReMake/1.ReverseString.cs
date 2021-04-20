@@ -8,6 +8,7 @@ namespace _1.ReverseStrings
         static void Main(string[] args)
         {
             string input = Console.ReadLine();
+            
             Stack<char> stackChars = new Stack<char>();
 
             for (int i = 0; i < input.Length; i++)
