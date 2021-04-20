@@ -13,7 +13,6 @@ namespace _11.BasicStackOperations
             int nPush = inputCmd[0];
             int sPop = inputCmd[1];
             int xSearch = inputCmd[2];
-
             Stack<int> stackNums = new Stack<int>();
 
             int[] input = Console.ReadLine().Split().Select(int.Parse).ToArray();
