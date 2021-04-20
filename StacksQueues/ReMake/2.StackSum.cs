@@ -50,7 +50,6 @@ namespace _2.StackSum
             }
 
             sum = stackSum.Sum();
-
             Console.WriteLine($"Sum: {sum}");
         }
     }
