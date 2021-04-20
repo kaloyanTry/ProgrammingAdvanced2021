@@ -34,6 +34,7 @@ namespace _3.SimpleCalculator
                 }
             }
 
+            
             Console.WriteLine(stackCalc.Pop());
         }
     }
