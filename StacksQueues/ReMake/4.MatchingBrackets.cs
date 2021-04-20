@@ -21,6 +21,7 @@ namespace _4.MatchingBrackets
                 if (input[i] == ')')
                 {
                     int startIndex = stackBrackets.Pop();
+                    
                     Console.WriteLine(input.Substring(startIndex, i - startIndex + 1));
                 }
             }
