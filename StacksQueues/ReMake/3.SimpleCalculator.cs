@@ -33,7 +33,6 @@ namespace _3.SimpleCalculator
                     stackCalc.Push((firstNum - secondNum).ToString());
                 }
             }
-
             
             Console.WriteLine(stackCalc.Pop());
         }
