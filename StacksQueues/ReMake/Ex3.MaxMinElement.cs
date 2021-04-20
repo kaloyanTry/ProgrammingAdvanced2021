@@ -9,6 +9,7 @@ namespace Ex3.MaxMinElement
         static void Main(string[] args)
         {
             int n = int.Parse(Console.ReadLine());
+            
             Stack<int> stackQueue = new Stack<int>();
 
             for (int i = 0; i < n; i++)
