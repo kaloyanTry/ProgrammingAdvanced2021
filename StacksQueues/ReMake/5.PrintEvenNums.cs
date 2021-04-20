@@ -15,7 +15,6 @@ namespace _5.PrintEvenNumbersQueue
             for (int i = 0; i < input.Length; i++)
             {
                 int curNum = input[i];
-
                 if (curNum % 2 == 0)
                 {
                     queueEvens.Enqueue(curNum);
