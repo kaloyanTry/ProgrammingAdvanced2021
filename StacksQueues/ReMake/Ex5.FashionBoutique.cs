@@ -25,7 +25,7 @@ namespace Ex5.FashionBoutique
                     rack = pieceCloth;
                 }
             }
-
+            
             Console.WriteLine(countRacks);
         }
     }
