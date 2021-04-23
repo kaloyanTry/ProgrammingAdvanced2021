@@ -38,7 +38,6 @@ namespace Ex7.TruckTour
                         difference.Enqueue(difference.Dequeue());
                         index++;
                     }
-
                     else
                     {
                         fuel += testQueue.Dequeue();
