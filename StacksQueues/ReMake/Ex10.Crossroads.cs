@@ -12,13 +12,12 @@ namespace Ex10.Crossroads
             int greenLightDuration = int.Parse(Console.ReadLine());
             int freeWindowDuration = int.Parse(Console.ReadLine());
 
-            string input = Console.ReadLine();
-
-            bool isHitted = false;
-            string hittedCarName = string.Empty;
-            char hittedChar = '\0';  //--Default char value:'\0';
+            bool isCrashed = false;
+            string crashedCarName = string.Empty;
+            char crashedCarChar = '\0';
             int totalCars = 0;
 
+            string input = Console.ReadLine();
             while (input != "END")
             {
                 if (input != "green")
@@ -29,37 +28,37 @@ namespace Ex10.Crossroads
                 }
 
                 int currentGreenLightDuration = greenLightDuration;
-
+                
                 while (currentGreenLightDuration > 0 && queueCars.Count > 0)
                 {
                     string carName = queueCars.Dequeue();
-                    int carLength = carName.Length;
+                    int carNameLenght = carName.Length;
 
-                    if (currentGreenLightDuration - carLength >= 0)
+                    if (currentGreenLightDuration >= carNameLenght)
                     {
-                        currentGreenLightDuration -= carLength;
+                        currentGreenLightDuration -= carNameLenght;
                         totalCars++;
                     }
                     else
                     {
                         currentGreenLightDuration += freeWindowDuration;
 
-                        if (currentGreenLightDuration - carLength >= 0)
+                        if (currentGreenLightDuration >= carNameLenght)
                         {
                             totalCars++;
                             break;
                         }
                         else
                         {
-                            isHitted = true;
-                            hittedCarName = carName;
-                            hittedChar = carName[currentGreenLightDuration];
+                            isCrashed = true;
+                            crashedCarName = carName;
+                            crashedCarChar = carName[currentGreenLightDuration];
                             break;
                         }
                     }
                 }
 
-                if (isHitted)
+                if (isCrashed)
                 {
                     break;
                 }
@@ -67,10 +66,10 @@ namespace Ex10.Crossroads
                 input = Console.ReadLine();
             }
 
-            if (isHitted)
+            if (isCrashed)
             {
                 Console.WriteLine("A crash happened!");
-                Console.WriteLine($"{hittedCarName} was hit at {hittedChar}.");
+                Console.WriteLine($"{crashedCarName} was hit at {crashedCarChar}.");
             }
             else
             {
