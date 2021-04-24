@@ -8,13 +8,10 @@ namespace Еx12.CupsBottles
     {
         static void Main(string[] args)
         {
-            int[] inputCups = Console.ReadLine().Split().Select(int.Parse).ToArray();
-            int[] inputBottles = Console.ReadLine().Split().Select(int.Parse).ToArray();
+            Queue<int> cupsQueue = new Queue<int>(Console.ReadLine().Split().Select(int.Parse));
+            Stack<int> bottlesStack = new Stack<int>(Console.ReadLine().Split().Select(int.Parse));
 
             int wastedWater = 0;
-
-            Queue<int> cupsQueue = new Queue<int>(inputCups);
-            Stack<int> bottlesStack = new Stack<int>(inputBottles);
 
             while (cupsQueue.Any() && bottlesStack.Any())
             {
@@ -28,7 +25,7 @@ namespace Еx12.CupsBottles
                 }
 
                 cupsQueue.Dequeue();
-                wastedWater += currentCupLevel - currentCupCapacity;
+                wastedWater +=  currentCupLevel - currentCupCapacity;
             }
 
             if (!cupsQueue.Any())
