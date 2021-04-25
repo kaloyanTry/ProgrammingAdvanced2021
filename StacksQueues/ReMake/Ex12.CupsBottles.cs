@@ -31,7 +31,7 @@ namespace Еx12.CupsBottles
             if (!cupsQueue.Any())
             {
                 Console.WriteLine("Bottles: " + string.Join(" ", bottlesStack));
-            }
+            }           
             else if (!bottlesStack.Any())
             {
                 Console.WriteLine("Cups: " + string.Join(" ", cupsQueue));
