@@ -1,7 +1,7 @@
 # ProgrammingAdvanced2021
 
 # AdvancedCSharp
-Programming Advanced Course with C# //SoftUni
+Programming Advanced Course with C# //SoftUni [link](https://softuni.bg/modules/58/csharp-advanced/1280)
 
 1. StacksQueues: Lab and Exercises [link](https://github.com/kaloyanTry/ProgrammingAdvanced2021/tree/main/StacksQueues)
 2. Matrix: Lab and Exercises [link](https://github.com/kaloyanTry/ProgrammingAdvanced2021/tree/main/Matrix)
