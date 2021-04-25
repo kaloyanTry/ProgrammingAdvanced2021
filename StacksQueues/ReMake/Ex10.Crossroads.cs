@@ -18,6 +18,7 @@ namespace Ex10.Crossroads
             int totalCars = 0;
 
             string input = Console.ReadLine();
+            
             while (input != "END")
             {
                 if (input != "green")
