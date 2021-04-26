@@ -27,6 +27,7 @@ namespace Ex4.MatrixShuffling
             while (input != "END")
             {
                 string[] data = input.Split(" ", StringSplitOptions.RemoveEmptyEntries);
+                
                 string command = data[0].ToLower();
 
                 if (command == "swap" && data.Length == 5)
@@ -40,6 +41,7 @@ namespace Ex4.MatrixShuffling
                     if (isValid)
                     {
                         string temp = matrix[swapRow1, swapCol1];
+                        
                         matrix[swapRow1, swapCol1] = matrix[swapRow2, swapCol2];
                         matrix[swapRow2, swapCol2] = temp;
 
