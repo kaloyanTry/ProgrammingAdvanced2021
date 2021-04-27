@@ -35,7 +35,8 @@ namespace Ex8.Bombs
                 Bomb bomb = new Bomb(bombX, bombY);
                 bombsQueue.Enqueue(bomb);
             }
-
+            
+            //Calculate the damage:
             while (bombsQueue.Any())
             {
                 Bomb bomb = bombsQueue.Dequeue();
