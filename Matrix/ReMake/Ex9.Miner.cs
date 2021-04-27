@@ -9,10 +9,9 @@ namespace Ex9.Miner
         static void Main(string[] args)
         {
             int n = int.Parse(Console.ReadLine());
+            string[] commands = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries).ToArray();
 
             char[,] matrix = new char[n, n];
-
-            string[] commands = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries).ToArray();
             Queue<string> movesQueue = new Queue<string>(commands);
 
             for (int row = 0; row < n; row++)
@@ -26,10 +25,10 @@ namespace Ex9.Miner
 
             int minerRow = -1;
             int minerCol = -1;
-            int totalCoals = 0;
-            int collectedCoals = 0;
             int endRow = -1;
             int endCol = -1;
+            int totalCoals = 0;
+            int collectedCoals = 0;
 
             for (int row = 0; row < n; row++)
             {
