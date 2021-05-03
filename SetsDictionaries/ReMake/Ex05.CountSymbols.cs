@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,10 +12,8 @@ namespace Ex05.CountSymbols
 
             Dictionary<char, int> charsDict = new Dictionary<char, int>();
 
-            for (int i = 0; i < input.Length; i++)
+            foreach (var currentChar in input)
             {
-                char currentChar = input[i];
-
                 if (!charsDict.ContainsKey(currentChar))
                 {
                     charsDict[currentChar] = 1;
