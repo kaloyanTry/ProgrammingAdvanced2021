@@ -9,6 +9,7 @@ namespace _02.AvrgStudentsGrade
         static void Main(string[] args)
         {
             int n = int.Parse(Console.ReadLine());
+            
             Dictionary<string, List<double>> students = new Dictionary<string, List<double>>();
 
             for (int i = 0; i < n; i++)
