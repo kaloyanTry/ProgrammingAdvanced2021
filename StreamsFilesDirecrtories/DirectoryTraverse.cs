@@ -38,7 +38,6 @@ namespace DirectoryTraversal
                         writer.WriteLine($"--{fileInfo.Name} - {Math.Ceiling((double)fileInfo.Length / 1024)}kb");
                     }
                 }
-
             }
         }
     }
