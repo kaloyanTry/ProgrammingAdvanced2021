@@ -14,6 +14,7 @@ namespace CopyBinaryFile
                     while (true)
                     {
                         byte[] buffer = new byte[4096];
+                        
                         int readBuffer = readStream.Read(buffer, 0, buffer.Length);
 
                         if (readBuffer == 0)
