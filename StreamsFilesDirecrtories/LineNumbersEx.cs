@@ -10,13 +10,13 @@ namespace LineNumbersExercise
         static void Main(string[] args)
         {
             string[] lines = File.ReadAllLines("../../../text.txt");
-            List<char> punctuationMarks = new List<char>() { '-', ',', '.', '!', '?', '\'' };
+            //List<char> punctuationMarks = new List<char>() { '-', ',', '.', '!', '?', '\'' };
 
             for (int i = 0; i < lines.Length; i++)
             {
                 string line = lines[i];
 
-                int letersCOunt = 0;
+                int letersCount = 0;
                 int punctuationCount = 0;
 
                 foreach (var ch in line)
