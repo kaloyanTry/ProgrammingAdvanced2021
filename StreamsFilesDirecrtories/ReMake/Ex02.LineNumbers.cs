@@ -12,7 +12,6 @@ namespace Ex02.LineNumbers
             string pathResult = "../../../actualResult.txt";
 
             string[] readerAllLinesText = File.ReadAllLines(pathText);
-            //List<char> marksList = new List<char>() {',', '-', '.', '!', '?', '\''};
 
             for (int i = 0; i < readerAllLinesText.Length; i++)
             {
