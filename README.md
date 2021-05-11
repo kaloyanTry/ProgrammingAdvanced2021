@@ -7,7 +7,7 @@ Programming Advanced Course with C# //SoftUni [link](https://softuni.bg/modules/
 2. Matrix: Lab and Exercises [link](https://github.com/kaloyanTry/ProgrammingAdvanced2021/tree/main/Matrix)
 3. Dectionaries: Lab and Exercises [link](https://github.com/kaloyanTry/ProgrammingAdvanced2021/tree/main/SetsDictionaries)
 4. Streams: Lab and Exercises [link](https://github.com/kaloyanTry/ProgrammingAdvanced2021/tree/main/StreamsFilesDirecrtories)
-5. FuncionalProgramming: Lab and Exercises [link](https://github.com/kaloyanTry/ProgrammingAdvanced2021/tree/main/FunctionalProgramming)
+5. FunctionalProgramming: Lab and Exercises [link](https://github.com/kaloyanTry/ProgrammingAdvanced2021/tree/main/FunctionalProgramming)
 6. DefiningClasses: Lab and Exercises [link](https://github.com/kaloyanTry/ProgrammingAdvanced2021/tree/main/DifiningClasses)
 7. LinkedList: Lab and Exercises [link](https://github.com/kaloyanTry/ProgrammingAdvanced2021/tree/main/LinkedList)
 8. Generics: Lab and Exercises [link](https://github.com/kaloyanTry/ProgrammingAdvanced2021/tree/main/Generics)
