@@ -7,9 +7,13 @@ namespace _02.SumNumbers
     {
         static void Main(string[] args)
         {
-            int[] inputNumbers = Console.ReadLine()
+            string input = Console.ReadLine();
+
+            Func<string, int> parser = n => int.Parse(n);
+
+            int[] inputNumbers = input
                 .Split(", ", StringSplitOptions.RemoveEmptyEntries)
-                .Select(int.Parse).ToArray();
+                .Select(parser).ToArray();
 
             Console.WriteLine(inputNumbers.Length);
             Console.WriteLine(inputNumbers.Sum());
