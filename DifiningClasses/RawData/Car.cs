@@ -9,8 +9,10 @@ namespace RawData
         public Car (string model, int engineSpeed, int enginePower, int cargoWeight, string cargoType, string[] tiresData)
         {
             Model = model;
+            
             Engine = new Engine(engineSpeed, enginePower);
             Cargo = new Cargo(cargoWeight, cargoType);
+            
             Tires = new Tire[4]
             {
                 new Tire(double.Parse(tiresData[0]), int.Parse(tiresData[1])),
@@ -21,6 +23,7 @@ namespace RawData
         }
 
         public string Model { get; set; }
+        
         public Engine Engine { get; set; }
         public Cargo Cargo { get; set; }
         public Tire[] Tires { get; set; }
