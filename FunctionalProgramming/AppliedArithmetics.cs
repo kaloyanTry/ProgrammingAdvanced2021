@@ -37,6 +37,7 @@ namespace AppliedArithmetics
             {
                 return x => x + 1;
             }
+            
             if (command == "subtract")
             {
                 return x => x - 1;
