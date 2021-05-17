@@ -35,25 +35,21 @@ namespace Exam01.FightForGondor
 
                     if (currentWarrior > currentPlate)
                     {
-                        queuePlates.Dequeue();
-
                         int lowAmounthPlate = currentWarrior - currentPlate;
-
+                        queuePlates.Dequeue();
                         stackWarrior.Pop();
+                        
                         stackWarrior.Push(lowAmounthPlate);
                     }
                     else if (currentPlate > currentWarrior)
                     {
-                        stackWarrior.Pop();
-
                         int lowAmounthWarrior = currentPlate - currentWarrior;
-
+                        stackWarrior.Pop();
                         queuePlates.Dequeue();
 
                         var items = queuePlates.ToArray();
                         queuePlates.Clear();
-                        queuePlates.Enqueue(lowAmounthWarrior);
-                        
+                        queuePlates.Enqueue(lowAmounthWarrior);                 
                         foreach (var item in items)
                         {
                             queuePlates.Enqueue(item);
