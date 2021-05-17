@@ -51,6 +51,7 @@ namespace MatrixGarden
                 {
                     Console.Write(matrix[row, col] + " ");
                 }
+                
                 Console.WriteLine();
             }
         }
