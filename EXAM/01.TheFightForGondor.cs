@@ -36,6 +36,7 @@ namespace _01.TheFightForGondor
                     if (orc > plate)
                     {
                         int orcLeftPower = orc - plate;
+                        
                         platesQueue.Dequeue();
                         orcsStack.Pop();
                         orcsStack.Push(orcLeftPower);
@@ -43,12 +44,15 @@ namespace _01.TheFightForGondor
                     else if (plate > orc)
                     {
                         int plateLeftPower = plate - orc;
+                        
                         orcsStack.Pop();
                         platesQueue.Dequeue();
 
                         int[] platesArray = new int[platesQueue.Count];
+                        
                         platesQueue.CopyTo(platesArray, 0);
                         platesQueue.Clear();
+                        
                         platesQueue.Enqueue(plateLeftPower);
                         foreach (var plateLeft in platesArray)
                         {
