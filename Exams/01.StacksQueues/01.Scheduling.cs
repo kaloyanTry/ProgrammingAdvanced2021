@@ -14,7 +14,6 @@ namespace _01.Scheduling
             Queue<int> threadsQueue = new Queue<int>(Console.ReadLine().Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(int.Parse));
             int taskToKill = int.Parse(Console.ReadLine());
 
-
             while (tasksStack.Any() && threadsQueue.Any())
             {
                 int task = tasksStack.Peek();
