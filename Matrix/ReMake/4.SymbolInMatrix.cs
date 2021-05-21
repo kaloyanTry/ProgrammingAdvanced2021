@@ -8,49 +8,44 @@ namespace SymbolMatrix
         static void Main(string[] args)
         {
             int n = int.Parse(Console.ReadLine());
+
             char[,] matrix = new char[n, n];
 
             for (int row = 0; row < matrix.GetLength(0); row++)
             {
-                string input = Console.ReadLine();
-                char[] data = input.ToCharArray();
+                string data = Console.ReadLine();
+                char[] dataChars = data.ToCharArray();
 
                 for (int col = 0; col < matrix.GetLength(1); col++)
                 {
-                    matrix[row, col] = data[col];
+                    matrix[row, col] += dataChars[col];
                 }
             }
 
-            char symbol = char.Parse(Console.ReadLine());
-            int symbolRow = -1;
-            int symbolCol = -1;
-            bool isSymbol = false;
+            char ch = char.Parse(Console.ReadLine());
+
+            bool isFound = false;
 
             for (int row = 0; row < matrix.GetLength(0); row++)
             {
                 for (int col = 0; col < matrix.GetLength(1); col++)
                 {
-                    if (matrix[row, col] == symbol)
+                    if (matrix[row, col] == ch)
                     {
-                        isSymbol = true;
-                        symbolRow = row;
-                        symbolCol = col;
+                        isFound = true;
+                        Console.WriteLine($"({row}, {col})");
                     }
                 }
 
-                if (isSymbol)
+                if (isFound)
                 {
                     break;
                 }
             }
 
-            if (isSymbol)
+            if (!isFound)
             {
-                Console.WriteLine($"({symbolRow}, {symbolCol})");
-            }
-            else
-            {
-                Console.WriteLine($"{symbol} does not occur in the matrix");
+                Console.WriteLine($"{ch} does not occur in the matrix");
             }
         }
     }
