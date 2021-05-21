@@ -10,8 +10,8 @@ namespace _5.SquareMaxSum
             int[] sizes = Console.ReadLine().Split(", ", StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
             int sizeRow = sizes[0];
             int sizeCol = sizes[1];
+            
             int[,] matrix = new int[sizeRow, sizeCol];
-
 
             for (int row = 0; row < matrix.GetLength(0); row++)
             {
