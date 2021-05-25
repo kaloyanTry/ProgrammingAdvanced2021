@@ -27,6 +27,7 @@ namespace _02.Snake
                     }
                 }
             }
+
             matrix[snakeRow, snakeCol] = '.';
 
             string command = Console.ReadLine();
@@ -45,7 +46,6 @@ namespace _02.Snake
                 if (matrix[snakeRow, snakeCol] == '*')
                 {
                     food++;
-                    matrix[snakeRow, snakeCol] = '.';
                 }
 
                 if (matrix[snakeRow, snakeCol] == 'B')
