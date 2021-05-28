@@ -60,6 +60,7 @@ namespace _02.ReVolt
                             PrintMatrix(matrix);
                             return;
                         }
+                        
                         matrix[playerRow, playerCol] = 'f';
                     }
                 }
