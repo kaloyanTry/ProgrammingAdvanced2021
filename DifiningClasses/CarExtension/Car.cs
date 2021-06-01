@@ -18,9 +18,9 @@ namespace CarManufacturer
         {
             double fuelConsume = distance * FuelConsumption;
 
-            if (FuelConsumption - fuelConsume >= 0)
+            if (FuelQuantity - fuelConsume >= 0)
             {
-                FuelConsumption -= fuelConsume;
+                FuelQuantity -= fuelConsume;
             }
             else
             {
