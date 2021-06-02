@@ -9,17 +9,19 @@ namespace CarManufacturer
         public static void Main(string[] args)
         {
             List<Tire[]> tires = new List<Tire[]>();
+            List<Engine> engines = new List<Engine>();
+            List<Car> cars = new List<Car>();
+            List<Car> carsSpecial = new List<Car>();
 
-            string command = Console.ReadLine();
-            while (command != "No more tires")
+            string input = Console.ReadLine();
+            while (input != "No more tires")
             {
-                string[] dataCommand = command.Split();
                 List<Tire> tireList = new List<Tire>();
-
-                for (int i = 0; i < dataCommand.Length; i+=2)
+                string[] dataInput = input.Split();
+                for (int i = 0; i < dataInput.Length; i+=2)
                 {
-                    int year = int.Parse(dataCommand[i]);
-                    double pressure = double.Parse(dataCommand[i + 1]);
+                    int year = int.Parse(dataInput[i]);
+                    double pressure = double.Parse(dataInput[i + 1]);
 
                     Tire tire = new Tire(year, pressure);
                     tireList.Add(tire);
@@ -27,55 +29,50 @@ namespace CarManufacturer
 
                 tires.Add(tireList.ToArray());
 
-                command = Console.ReadLine();
+                input = Console.ReadLine();
             }
 
-            List<Engine> engines = new List<Engine>();
-
-            command = Console.ReadLine();
-            while (command != "Engines done")
+            input = Console.ReadLine();
+            while (input != "Engines done")
             {
-                string[] dataCommand = command.Split();
-                int horsePower = int.Parse(dataCommand[0]);
-                double cubicCapacity = double.Parse(dataCommand[1]);
+                string[] dataInput = input.Split();
+
+                int horsePower = int.Parse(dataInput[0]);
+                double cubicCapacity = double.Parse(dataInput[1]);
 
                 Engine engine = new Engine(horsePower, cubicCapacity);
                 engines.Add(engine);
 
-                command = Console.ReadLine();
+                input = Console.ReadLine();
             }
 
-            List<Car> cars = new List<Car>();
-
-            command = Console.ReadLine();
-            while (command != "Show special")
+            input = Console.ReadLine();
+            while (input != "Show special")
             {
-                string[] dataCommand = command.Split();
-                string make = dataCommand[0];
-                string model = dataCommand[1];
-                int year = int.Parse(dataCommand[2]);
-                double fuelQuantity = double.Parse(dataCommand[3]);
-                double fuelConsumption = double.Parse(dataCommand[4]);
-                int engineIndex = int.Parse(dataCommand[5]);
-                int tiresIndex = int.Parse(dataCommand[6]);
+                string[] dataInput = input.Split();
+                string make = dataInput[0];
+                string model = dataInput[1];
+                int year = int.Parse(dataInput[2]);
+                double fuelQuantity = double.Parse(dataInput[3]);
+                double fuelConsumption = double.Parse(dataInput[4]);
+                int engineIndex = int.Parse(dataInput[5]);
+                int tiresIndex = int.Parse(dataInput[6]);
 
                 Car car = new Car(make, model, year, fuelQuantity, fuelConsumption, engines[engineIndex], tires[tiresIndex]);
                 cars.Add(car);
 
-                command = Console.ReadLine();
+                input = Console.ReadLine();
             }
 
-            Func<Car, bool> filter = c => c.Year >= 2017 && c.Engine.HorsePower > 330 && c.Tires.Sum(t => t.Pressure) >= 9 && c.Tires.Sum(t => t.Pressure) <= 10;
+            Func<Car, bool> filterCars = c => c.Year >= 2017 && c.Engine.HorsePower >= 330 && c.Tires.Sum(t => t.Pressure) >= 9 && c.Tires.Sum(t => t.Pressure) <= 10;
 
-            List<Car> specialCars = new List<Car>();
-
-            foreach (var car in cars.Where(filter))
+            foreach (var car in cars.Where(filterCars))
             {
                 car.Drive(20);
-                specialCars.Add(car);
+                carsSpecial.Add(car);
             }
 
-            Console.WriteLine(string.Join("", specialCars));
+            Console.WriteLine(string.Join("", carsSpecial));
         }
     }
 }
