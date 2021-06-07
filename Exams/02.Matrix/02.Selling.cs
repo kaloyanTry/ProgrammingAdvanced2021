@@ -94,6 +94,7 @@ namespace _02.Selling
             }
 
             Console.WriteLine($"Money: {money}");
+            
             //Print the matrix:
             for (int row = 0; row < matrix.GetLength(0); row++)
             {
