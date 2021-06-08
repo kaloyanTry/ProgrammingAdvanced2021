@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace CocktailParty
 {
@@ -17,11 +18,13 @@ namespace CocktailParty
 
         public override string ToString()
         {
-            string result = $"Ingredient: {Name}" + Environment.NewLine +
-                            $"Quantity: {Quantity}" + Environment.NewLine +
-                            $"Alcohol: {Alcohol}";
+            StringBuilder strBuild = new StringBuilder();
 
-            return result.Trim();
+            strBuild.AppendLine($"Ingredient: {Name}");
+            strBuild.AppendLine($"Quantity: {Quantity}");
+            strBuild.AppendLine($"Alcohol: {Alcohol}");
+
+            return strBuild.ToString().Trim();
         }
     }
 }

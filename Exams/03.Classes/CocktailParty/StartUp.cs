@@ -54,9 +54,6 @@
             //Ingredient: Milk
             //Quantity: 5
             //Alcohol: 0
-
-
- 
         }
     }
 }

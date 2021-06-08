@@ -23,34 +23,40 @@ namespace CocktailParty
 
         public void Add(Ingredient ingredient)
         {
-            Ingredient currIngredient = Ingredients.FirstOrDefault(i => i.Name == ingredient.Name);
+            int amountAlcohol = 0;
+            int amountQuantity = 0;
+            foreach (var alc in Ingredients)
+            {
+                if (ingredient.Alcohol < MaxAlcoholLevel)
+                {
+                    amountAlcohol += alc.Alcohol;
+                }
 
-            if (currIngredient == null && ingredient.Quantity < Capacity && ingredient.Alcohol < MaxAlcoholLevel)
+                if (ingredient.Quantity < Capacity)
+                {
+                    amountQuantity += alc.Quantity;
+                }
+            }
+            if (!Ingredients.Contains(ingredient) && (MaxAlcoholLevel > amountAlcohol && Capacity >  amountQuantity))
             {
                 Ingredients.Add(ingredient);
+
             }
         }
 
         public bool Remove(string name)
         {
-            Ingredient ingredient = Ingredients.FirstOrDefault(i => i.Name == name);
-            if (ingredient == null)
-            {
-                return false;
-            }
+            Ingredient ingredient = Ingredients.Find(i => i.Name == name);
 
+            Ingredients.Remove(ingredient);
             return true;
         }
 
         public Ingredient FindIngredient(string name)
         {
-            Ingredient ingredient = Ingredients.FirstOrDefault(i => i.Name == name);
-            if (ingredient == null)
-            {
-                return null;
-            }
+            Ingredient ingredient = Ingredients.Find(i => i.Name == name);
 
-            return ingredient;
+            return Ingredients.Contains(ingredient) ? ingredient : null;
         }
 
         public Ingredient GetMostAlcoholicIngredient()
@@ -60,19 +66,7 @@ namespace CocktailParty
             return mostAlcoholicIngredient;
         }
 
-        //public int CurrentAlcoholLevel()
-        //{
-        //    int amountAlcohol = 0;
-
-        //    foreach (var coctail in Ingredients)
-        //    {
-        //        amountAlcohol += coctail.Alcohol;
-        //    }
-
-        //    return amountAlcohol;
-        //}
-
-        public int CurrentAlcoholLevel => Ingredients.Capacity;
+        public int CurrentAlcoholLevel => Ingredients.Count;
 
         public string Report()
         {
@@ -82,7 +76,7 @@ namespace CocktailParty
 
             foreach (var ingredient in Ingredients)
             {
-                Console.WriteLine(ingredient);
+                sb.AppendLine(ingredient.ToString());
             }
 
             return sb.ToString().Trim();
