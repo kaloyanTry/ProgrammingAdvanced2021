@@ -37,10 +37,10 @@ namespace CocktailParty
                     amountQuantity += alc.Quantity;
                 }
             }
+
             if (!Ingredients.Contains(ingredient) && (MaxAlcoholLevel > amountAlcohol && Capacity >  amountQuantity))
             {
                 Ingredients.Add(ingredient);
-
             }
         }
 
