@@ -19,11 +19,10 @@ namespace CocktailParty
         public override string ToString()
         {
             StringBuilder strBuild = new StringBuilder();
-
             strBuild.AppendLine($"Ingredient: {Name}");
             strBuild.AppendLine($"Quantity: {Quantity}");
             strBuild.AppendLine($"Alcohol: {Alcohol}");
-
+            
             return strBuild.ToString().Trim();
         }
     }
