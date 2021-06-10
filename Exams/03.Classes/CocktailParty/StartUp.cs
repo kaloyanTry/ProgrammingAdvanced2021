@@ -41,7 +41,7 @@
             //Alcohol: 2
 
             //CurrentAlcoholLevel
-            Console.WriteLine(cocktail.CurrentAlcoholLevel());
+            Console.WriteLine(cocktail.CurrentAlcoholLevel);
             //2
 
             //Print Cocktail report
