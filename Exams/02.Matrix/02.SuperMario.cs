@@ -30,8 +30,6 @@ namespace _02.SuperMario
                 }
             }
 
-            matrix[marioRow, marioCol] = '-';
-
             while (true)
             {
                 string[] inputCommand = Console.ReadLine().Split();
@@ -40,24 +38,36 @@ namespace _02.SuperMario
                 int enemyCol = int.Parse(inputCommand[2]);
 
                 matrix[enemyRow, enemyCol] = 'B';
+                matrix[marioRow, marioCol] = '-';
 
                 MarioMove(command, ref marioRow, ref marioCol, matrix, ref marioLives);
+                marioLives--;
 
                 if (matrix[marioRow, marioCol] == matrix[enemyRow, enemyCol])
                 {
                     marioLives -= 2;
 
-                    if (marioLives >= 0)
+                    if (marioLives > 0)
                     {
                         matrix[enemyRow, enemyCol] = '-';
                     }
                 }
 
-                if (marioLives < 0)
+                if (marioLives <= 0)
                 {
+                    if (matrix[marioRow, marioCol] == 'P')
+                    {
+                        matrix[marioRow, marioCol] = '-';
+                        Console.WriteLine($"Mario has successfully saved the princess! Lives left: {marioLives}");
+                        PrintMatrix(matrix);
+
+                        break;
+                    }
+
                     Console.WriteLine($"Mario died at {marioRow};{marioCol}.");
-                    matrix[marioRow, marioCol] = 'X';
+                    matrix[marioRow, marioCol] = 'X';        
                     PrintMatrix(matrix);
+
                     break;
                 }
 
@@ -66,6 +76,7 @@ namespace _02.SuperMario
                     matrix[marioRow, marioCol] = '-';
                     Console.WriteLine($"Mario has successfully saved the princess! Lives left: {marioLives}");
                     PrintMatrix(matrix);
+
                     break;
                 }
             }
@@ -122,8 +133,6 @@ namespace _02.SuperMario
                     marioCol = matrix.GetLength(1) - 1;
                 }
             }
-
-            marioLives--;
         }
     }
 }
