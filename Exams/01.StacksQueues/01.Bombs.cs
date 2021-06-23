@@ -15,7 +15,7 @@ namespace _01.Problem
             Queue<int> bombEffect = new Queue<int>(Console.ReadLine().Split(", ", StringSplitOptions.RemoveEmptyEntries).Select(int.Parse));
             Stack<int> bombCasing = new Stack<int>(Console.ReadLine().Split(", ", StringSplitOptions.RemoveEmptyEntries).Select(int.Parse));
 
-            while ((bombCasing.Any() && bombEffect.Any()) ||(daturaBombsCount < 3 || cherryBombsCount < 3 || smokeBombsCount < 3))
+            while ((bombCasing.Any() && bombEffect.Any()) &&(daturaBombsCount < 3 || cherryBombsCount < 3 || smokeBombsCount < 3))
             {
                 int casing = bombCasing.Peek();
                 int effect = bombEffect.Peek();
