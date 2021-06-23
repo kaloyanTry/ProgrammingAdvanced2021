@@ -48,11 +48,6 @@ namespace _01.Problem
                     bombCasing.Pop();
                     bombCasing.Push(casing);
                 }
-                
-                //if (!bombCasing.Any() || !bombEffect.Any())
-                //{
-                //    break;
-                //}
             }
 
             if (daturaBombsCount >= 3 && cherryBombsCount >= 3 && smokeBombsCount >= 3)
