@@ -1,102 +1,90 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace _01.Bombs
+namespace _01.Problem
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Queue<int> bombsEffectQueue = new Queue<int>(Console.ReadLine()
-                .Split(", ", StringSplitOptions.RemoveEmptyEntries)
-                .Select(int.Parse));
-            Stack<int> bombsCasingStack = new Stack<int>(Console.ReadLine()
-                .Split(", ", StringSplitOptions.RemoveEmptyEntries)
-                .Select(int.Parse));
+            int daturaBombsCount = 0;
+            int cherryBombsCount = 0;
+            int smokeBombsCount = 0;
 
-            int bombsDatura = 0;
-            int bombsChery = 0;
-            int bombsSmokeDecony = 0;
+            Queue<int> bombEffect = new Queue<int>(Console.ReadLine().Split(", ", StringSplitOptions.RemoveEmptyEntries).Select(int.Parse));
+            Stack<int> bombCasing = new Stack<int>(Console.ReadLine().Split(", ", StringSplitOptions.RemoveEmptyEntries).Select(int.Parse));
 
-            int datura = 40;
-            int chery = 60;
-            int smokeDecony = 120;
-
-            while (bombsEffectQueue.Any() && bombsCasingStack.Any() && (bombsDatura < 3 || bombsChery < 3 || bombsSmokeDecony < 3))
+            while ((bombCasing.Any() && bombEffect.Any()) ||(daturaBombsCount < 3 || cherryBombsCount < 3 || smokeBombsCount < 3))
             {
-                int bombEffect = bombsEffectQueue.Peek();
-                int bombCasing = bombsCasingStack.Peek();
-                bool isCreatedBomb = false;
+                int casing = bombCasing.Peek();
+                int effect = bombEffect.Peek();
 
-                if (bombEffect + bombCasing == datura)
+                if (casing + effect == 40)
                 {
-                    bombsDatura++;
-                    isCreatedBomb = true;
+                    daturaBombsCount++;
+                    bombCasing.Pop();
+                    bombEffect.Dequeue();
                 }
-                else if (bombEffect + bombCasing == chery)
+                else if (casing + effect == 60)
                 {
-                    bombsChery++;
-                    isCreatedBomb = true;
+                    cherryBombsCount++;
+                    bombCasing.Pop();
+                    bombEffect.Dequeue();
                 }
-                else if (bombEffect + bombCasing == smokeDecony)
+                else if (casing + effect == 120)
                 {
-                    bombsSmokeDecony++;
-                    isCreatedBomb = true;
+                    smokeBombsCount++;
+                    bombCasing.Pop();
+                    bombEffect.Dequeue();
                 }
                 else
                 {
-                    int decresedCasing = bombCasing - 5;
-                    if (decresedCasing < 0)
+                    casing -= 5;
+                    if (casing < 0)
                     {
-                        decresedCasing = 0;
+                        casing = 0;
                     }
-                    bombsCasingStack.Pop();
-                    bombsCasingStack.Push(decresedCasing);
+                    bombCasing.Pop();
+                    bombCasing.Push(casing);
                 }
-
-                if (isCreatedBomb)
-                {
-                    bombsCasingStack.Pop();
-                    bombsEffectQueue.Dequeue();
-                }
-
-                if (bombsCasingStack.Count == 0 || bombsEffectQueue.Count == 0)
-                {
-                    break;
-                }
+                
+                //if (!bombCasing.Any() || !bombEffect.Any())
+                //{
+                //    break;
+                //}
             }
 
-            if (bombsDatura < 3 || bombsChery < 3 || bombsSmokeDecony < 3)
+            if (daturaBombsCount >= 3 && cherryBombsCount >= 3 && smokeBombsCount >= 3)
             {
-                Console.WriteLine("You don't have enough materials to fill the bomb pouch.");
+                Console.WriteLine($"Bene! You have successfully filled the bomb pouch!");
             }
             else
             {
-                Console.WriteLine("Bene! You have successfully filled the bomb pouch!");
+                Console.WriteLine("You don't have enough materials to fill the bomb pouch.");
             }
 
-            if (bombsEffectQueue.Any())
+            if (bombEffect.Any())
             {
-                Console.WriteLine("Bomb Effects: " + string.Join(", ", bombsEffectQueue));
+                Console.WriteLine("Bomb Effects: " + string.Join(", ", bombEffect));
             }
             else
             {
                 Console.WriteLine("Bomb Effects: empty");
             }
 
-            if (bombsCasingStack.Any())
+            if (bombCasing.Any())
             {
-                Console.WriteLine("Bomb Casings: " + string.Join(", ", bombsCasingStack));
+                Console.WriteLine("Bomb Casings: " + string.Join(", ", bombCasing));
             }
             else
             {
                 Console.WriteLine("Bomb Casings: empty");
             }
 
-            Console.WriteLine($"Cherry Bombs: {bombsChery}");
-            Console.WriteLine($"Datura Bombs: {bombsDatura}");
-            Console.WriteLine($"Smoke Decoy Bombs: {bombsSmokeDecony}");
+            Console.WriteLine($"Cherry Bombs: {cherryBombsCount}");
+            Console.WriteLine($"Datura Bombs: {daturaBombsCount}");
+            Console.WriteLine($"Smoke Decoy Bombs: {smokeBombsCount}");
         }
     }
 }
