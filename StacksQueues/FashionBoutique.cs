@@ -19,6 +19,7 @@ namespace FashionBoutique
             while (stackClothes.Any())
             {
                 int clothes = stackClothes.Pop();
+                
                 rackFill += clothes;
 
                 if (rackFill > rackCapacity)
