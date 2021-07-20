@@ -21,9 +21,9 @@ namespace KeyRevolver
             int bulletCount = 0;
 
             int currentBarelSize = gunBarrelSize;
+            
             while (bullets.Any() && locks.Any())
             {
-  
                 bulletCount++;
                 currentBarelSize--;
                 int currBullet = bullets.Pop();
@@ -43,7 +43,6 @@ namespace KeyRevolver
                 {
                     currentBarelSize = gunBarrelSize;
                     Console.WriteLine("Reloading!");
-
                 }
             }
 
