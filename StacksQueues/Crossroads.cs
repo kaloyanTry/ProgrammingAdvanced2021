@@ -17,14 +17,17 @@ namespace CrossRoads
             int passedCars = 0;
 
             string command = Console.ReadLine();
+            
             while (command != "END")
             {
                 if (command == "green")
                 {
                     int elapsedSeconds = 0;
+                    
                     while (elapsedSeconds < greenLightSeconds && cars.Any())
                     {
                         string car = cars.Peek();
+                        
                         if (elapsedSeconds + car.Length <= greenLightSeconds)
                         {
                             elapsedSeconds += car.Length;
