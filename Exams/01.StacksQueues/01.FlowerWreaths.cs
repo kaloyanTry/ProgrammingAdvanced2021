@@ -16,10 +16,10 @@ namespace _01.FlowerWreaths
                 .Select(int.Parse));
 
             int wreaths = 0;
-            int flowersLeft = 0;
+            int store = 0;
 
             while (liliesStack.Any() && rosesQueue.Any())
-            {
+            {           
                 int lily = liliesStack.Peek();
                 int rose = rosesQueue.Peek();
 
@@ -41,21 +41,15 @@ namespace _01.FlowerWreaths
 
                 if (lily + rose < 15)
                 {
-                    flowersLeft += lily;
-                    flowersLeft += rose;
+                    store += lily;
+                    store += rose;
 
                     liliesStack.Pop();
                     rosesQueue.Dequeue();
                 }
             }
 
-            for (int i = 1; i <= flowersLeft; i++)
-            {
-                if (i % 15 == 0)
-                {
-                    wreaths += 1;
-                }
-            }
+            wreaths += store / 15;
 
             if (wreaths >= 5)
             {
