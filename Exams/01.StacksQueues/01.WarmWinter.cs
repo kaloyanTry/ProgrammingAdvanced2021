@@ -17,6 +17,7 @@ namespace ConsoleRetake
                 .Select(int.Parse));
 
             Queue<int> sets = new Queue<int>();
+            
             int maxSet = 0;
 
             while (hatsStack.Any() && scarfsQueue.Any())
