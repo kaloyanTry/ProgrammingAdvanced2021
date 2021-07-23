@@ -33,8 +33,8 @@ namespace MatrixBombs
                 int bombX = bombsValue[i].Split(",").Select(int.Parse).ToArray()[0];
                 int bombY = bombsValue[i].Split(",").Select(int.Parse).ToArray()[1];
 
-                Bomb b = new Bomb(bombX, bombY);
-                bombs.Enqueue(b);
+                Bomb bomb = new Bomb(bombX, bombY);
+                bombs.Enqueue(bomb);
             }
 
             while (bombs.Count > 0)
