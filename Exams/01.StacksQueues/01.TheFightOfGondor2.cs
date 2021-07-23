@@ -49,6 +49,7 @@ namespace _01.Problem
                         defencePlates.CopyTo(arrayPlates, 0);
                         defencePlates.Clear();
                         defencePlates.Enqueue(leftPlate);
+                        
                         foreach (var plateArray in arrayPlates)
                         {
                             defencePlates.Enqueue(plateArray);
