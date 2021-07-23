@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -20,29 +20,27 @@ namespace _01.Problem
             {
                 int liquid = liquids.Peek();
                 int ingredient = ingredients.Peek();
+                bool isCooking = false;
 
                 if (liquid + ingredient == 25)
                 {
                     bread++;
-                    liquids.Dequeue();
-                    ingredients.Pop();
+                    isCooking = true;
                 }
                 else if (liquid + ingredient == 50)
                 {
                     cake++;
-                    liquids.Dequeue();
-                    ingredients.Pop();
+                    isCooking = true;
                 }
                 else if (liquid + ingredient == 75)
                 {
                     pastry++;
-                    liquids.Dequeue();
-                    ingredients.Pop();
-                }else if (liquid + ingredient == 100)
+                    isCooking = true;
+                }
+                else if (liquid + ingredient == 100)
                 {
                     fruitPie++;
-                    liquids.Dequeue();
-                    ingredients.Pop();
+                    isCooking = true;
                 }
                 else
                 {
@@ -50,6 +48,12 @@ namespace _01.Problem
                     liquids.Dequeue();
                     ingredients.Pop();
                     ingredients.Push(increasedIngradient);
+                }
+
+                if (isCooking)
+                {
+                    liquids.Dequeue();
+                    ingredients.Pop();
                 }
             }
 
