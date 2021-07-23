@@ -49,10 +49,12 @@ namespace _01.TheFightForGondor
                         platesQueue.Dequeue();
 
                         int[] platesArray = new int[platesQueue.Count];
+                        
                         platesQueue.CopyTo(platesArray, 0);
                         platesQueue.Clear();
 
                         platesQueue.Enqueue(plateLeftPower);
+                        
                         foreach (var plateLeft in platesArray)
                         {
                             platesQueue.Enqueue(plateLeft);
