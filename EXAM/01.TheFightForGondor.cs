@@ -52,7 +52,6 @@ namespace _01.TheFightForGondor
                         
                         platesQueue.CopyTo(platesArray, 0);
                         platesQueue.Clear();
-                        
                         platesQueue.Enqueue(plateLeftPower);
                         foreach (var plateLeft in platesArray)
                         {
