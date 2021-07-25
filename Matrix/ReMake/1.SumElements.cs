@@ -8,7 +8,6 @@ namespace ConsoleMatrix
         static void Main(string[] args)
         {
             int[] mSize = Console.ReadLine().Split(", ", StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
-
             int mRows = mSize[0];
             int mCols = mSize[1];
             int[,] matrix = new int[mRows, mCols];
