@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Linq;
 
 namespace ConsoleMatrix2
 {
-    class Program
+    class SymbolInMatrix2
     {
         static void Main(string[] args)
         {
@@ -51,16 +51,6 @@ namespace ConsoleMatrix2
             {
                 Console.WriteLine($"{ch} does not occur in the matrix");
             }
-
-            //Print the matrix:
-            //for (int row = 0; row < matrix.GetLength(0); row++)
-            //{
-            //    for (int col = 0; col < matrix.GetLength(1); col++)
-            //    {
-            //        Console.Write(matrix[row, col] + " ");
-            //    }
-            //    Console.WriteLine();
-            //}
         }
     }
 }
