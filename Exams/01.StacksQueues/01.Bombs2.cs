@@ -39,10 +39,12 @@ namespace _01.Problem
                 else
                 {
                     int decreasedCasing = casing - 5;
+                    
                     if (decreasedCasing < 0)
                     {
                         decreasedCasing = 0;
                     }
+                    
                     casings.Pop();
                     casings.Push(decreasedCasing);
                 }
