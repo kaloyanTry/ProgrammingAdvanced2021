@@ -9,6 +9,7 @@ namespace _02.Warship2
         {
             int sizeField = int.Parse(Console.ReadLine());
             char[,] matrix = new char[sizeField, sizeField];
+            
             int firstPlayerShipsCount = 0;
             int secondPlayerShipsCount = 0;
             int totalShipsDestroyed = 0;
