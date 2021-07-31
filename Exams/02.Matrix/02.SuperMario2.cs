@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 
 namespace _02.ProblemMatrix2
@@ -14,10 +14,11 @@ namespace _02.ProblemMatrix2
             int marioRow = -1;
             int marioCol = -1;
 
-            for (int row = 0; row < matrix.GetLength(0); row++)
+            for (int row = 0; row < nRows; row++)
             {
                 string inputData = Console.ReadLine();
-                for (int col = 0; col < matrix.GetLength(1); col++)
+                int nCol = inputData.Length;
+                for (int col = 0; col < nCol; col++)
                 {
                     matrix[row, col] = inputData[col];
 
@@ -74,24 +75,17 @@ namespace _02.ProblemMatrix2
                 }
 
                 marioLives--;
-                
-                if (matrix[marioRow, marioCol] == matrix[spawnRow, spawnCol])
-                {
-                    marioLives -= 2;
-
-                    if (marioLives <= 0)
-                    {
-                        matrix[marioRow, marioCol] = 'X';
-                        Console.WriteLine($"Mario died at {marioRow};{marioCol}.");
-                        break;
-                    }
-                }
 
                 if (matrix[marioRow, marioCol] == 'P')
                 {
                     matrix[marioRow, marioCol] = '-';
                     Console.WriteLine($"Mario has successfully saved the princess! Lives left: {marioLives}");
                     break;
+                }
+
+                if (matrix[spawnRow, spawnCol] == matrix[marioRow, marioCol])
+                {
+                    marioLives -= 2;
                 }
 
                 if (marioLives <= 0)
