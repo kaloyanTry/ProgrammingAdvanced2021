@@ -45,8 +45,6 @@ namespace VetClinic
             //The clinic has the following patients:
             //Bella Mia
             //Zak Jon
-
-
         }
     }
 }
