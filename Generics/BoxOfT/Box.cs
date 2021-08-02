@@ -1,28 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace BoxOfT
 {
     public class Box<T>
     {
-        private Stack<T> stack;
+        Stack<T> elements;
 
         public Box()
         {
-            stack = new Stack<T>();
+            elements = new Stack<T>();
         }
-
-        public int Count { get { return stack.Count; } }
 
         public void Add(T element)
         {
-            stack.Push(element);
+            elements.Push(element);
         }
 
         public T Remove()
         {
-            return stack.Pop();
+            return  elements.Pop();
         }
+
+        public int Count => elements.Count;
     }
 }
