@@ -1,4 +1,8 @@
-﻿namespace ClassroomProject
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace ClassroomProject
 {
     public class Student
     {

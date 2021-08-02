@@ -14,7 +14,7 @@
             Student studentFour = new Student("Dean", "Winchester", "Music");
             // Print Student
             Console.WriteLine(student); // Student: First Name = Peter, Last Name = Parker, Subject = Geometry
-            // Register Student
+                                        // Register Student
             string register = classroom.RegisterStudent(student);
             Console.WriteLine(register); // Added student Peter Parker
             string registerTwo = classroom.RegisterStudent(studentTwo);
@@ -25,7 +25,7 @@
             Console.WriteLine(dismissed); // Dismissed student Peter Parker
             string dismissedTwo = classroom.DismissStudent("Ellie", "Goulding");
             Console.WriteLine(dismissedTwo); // Student not found
-            // Subject info
+                                             // Subject info
             string subjectInfo = classroom.GetSubjectInfo("Algebra");
             Console.WriteLine(subjectInfo);
             // Subject: Algebra
@@ -34,8 +34,8 @@
             // Sam Winchester
             string anotherInfo = classroom.GetSubjectInfo("Art");
             Console.WriteLine(anotherInfo); // No students enrolled for the subject
-            // Get Student
-            Console.WriteLine(classroom.GetStudent("Dean", "Winchester")); 
+                                            // Get Student
+            Console.WriteLine(classroom.GetStudent("Dean", "Winchester"));
             // Student: First Name = Dean, Last Name = Winchester, Subject = Music
         }
     }

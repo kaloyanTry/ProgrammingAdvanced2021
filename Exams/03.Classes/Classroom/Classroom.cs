@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -20,15 +21,16 @@ namespace ClassroomProject
 
         public string RegisterStudent(Student student)
         {
-
-            if (Capacity <= Count)
+            if (Count < Capacity)
             {
-                return "No seats in the classroom";   
-            }
+                students.Add(student);
 
-            students.Add(student);
-            return $"Added student {student.FirstName} {student.LastName}";
-            
+                return $"Added student {student.FirstName} {student.LastName}";
+            }
+            else
+            {
+                return "No seats in the classroom";
+            }
         }
 
         public string DismissStudent(string firstName, string lastName)
@@ -39,24 +41,27 @@ namespace ClassroomProject
             {
                 return "Student not found";
             }
-
-            students.Remove(student);
-            return $"Dismissed student {student.FirstName} {student.LastName}";
+            else
+            {
+                students.Remove(student);
+                return $"Dismissed student {firstName} {lastName}";
+            }
         }
 
         public string GetSubjectInfo(string subject)
         {
             StringBuilder sb = new StringBuilder();
-            
+
             List<Student> studentsSubject = students.Where(s => s.Subject == subject).ToList();
 
             if (studentsSubject.Count != 0)
             {
                 sb.AppendLine($"Subject: {subject}");
                 sb.AppendLine("Students:");
+
                 foreach (var stu in studentsSubject)
                 {
-                    sb.AppendLine($"{stu.FirstName} {stu.LastName}");
+                     sb.AppendLine($"{stu.FirstName} {stu.LastName}");
                 }
             }
             else
@@ -67,11 +72,14 @@ namespace ClassroomProject
             return sb.ToString().Trim();
         }
 
-        public int GetStudentsCount() => students.Count;
+        public int GetStudentsCount()
+        {
+            return students.Count;
+        }
 
         public Student GetStudent(string firstName, string lastName)
         {
-            Student student = students.Find(s => s.FirstName == firstName && s.LastName == lastName);
+            Student student = students.FirstOrDefault(s => s.FirstName == firstName && s.LastName == lastName);
 
             return student;
         }
