@@ -7,7 +7,6 @@ namespace _02.Selling
         static void Main(string[] args)
         {
             int n = int.Parse(Console.ReadLine());
-
             char[,] matrix = new char[n, n];
             int sellerRow = -1;
             int sellerCol = -1;
@@ -94,7 +93,7 @@ namespace _02.Selling
             }
 
             Console.WriteLine($"Money: {money}");
-            //Print the matrix:
+      
             for (int row = 0; row < matrix.GetLength(0); row++)
             {
                 for (int col = 0; col < matrix.GetLength(1); col++)
@@ -104,7 +103,6 @@ namespace _02.Selling
 
                 Console.WriteLine();
             }
-
         }
     }
 }
