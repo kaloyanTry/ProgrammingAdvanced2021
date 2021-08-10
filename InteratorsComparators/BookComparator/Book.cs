@@ -21,6 +21,7 @@ namespace IteratorsAndComparators
             {
                 compare = Title.CompareTo(other.Title);
             }
+            
             return compare;
         }
 
