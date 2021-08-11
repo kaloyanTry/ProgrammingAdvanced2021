@@ -81,8 +81,7 @@ namespace _02.SuperMario
 
                 if (matrix[rowMario][colMario] == matrix[rowSpawn][colSpawn])
                 {
-                    livesMario -= 2;
-                    
+                    livesMario -= 2; 
                 }
 
                 if (matrix[rowMario][colMario] == 'P')
