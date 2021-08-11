@@ -1,4 +1,6 @@
-﻿using System;
+using System;
+using System.Linq;
+using System.Text;
 
 namespace _02.SuperMario
 {
@@ -81,7 +83,7 @@ namespace _02.SuperMario
 
                 if (matrix[rowMario][colMario] == matrix[rowSpawn][colSpawn])
                 {
-                    livesMario -= 2; 
+                    livesMario -= 2;
                 }
 
                 if (matrix[rowMario][colMario] == 'P')
@@ -101,12 +103,10 @@ namespace _02.SuperMario
                 matrix[rowMario][colMario] = 'M';
             }
 
-
             foreach (var row in matrix)
             {
                 Console.WriteLine(row);
             }
-
         }
     }
 }
