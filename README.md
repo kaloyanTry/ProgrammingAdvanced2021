@@ -13,4 +13,5 @@ Programming Advanced Course with C# //SoftUni [link](https://softuni.bg/modules/
 8. Generics: Lab and Exercises [link](https://github.com/kaloyanTry/ProgrammingAdvanced2021/tree/main/Generics)
 9. InteratorsComparators: Lab and Exercises [link](https://github.com/kaloyanTry/ProgrammingAdvanced2021/tree/main/InteratorsComparators)
 10. Algorithms: Lab and Exercises [link](https://github.com/kaloyanTry/ProgrammingAdvanced2021/tree/main/AlgorithmsBasic)
-11. Exams: Lab and Exercises [link](https://github.com/kaloyanTry/ProgrammingAdvanced2021/tree/main/OldExams)
+11. OldExams: Exercises [link](https://github.com/kaloyanTry/ProgrammingAdvanced2021/tree/main/OldExams)
+12. ExamsTraining: Exercises [link](https://github.com/kaloyanTry/ProgrammingAdvanced2021/tree/main/Exams)
