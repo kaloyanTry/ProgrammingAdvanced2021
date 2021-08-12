@@ -11,6 +11,7 @@ namespace CarManufacturer
             List<Tire[]> tires = new List<Tire[]>();
 
             string command = Console.ReadLine();
+            
             while (command != "No more tires")
             {
                 string[] tiresData = command.Split();
