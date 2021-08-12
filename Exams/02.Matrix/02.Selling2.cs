@@ -18,6 +18,7 @@ namespace _02.ProblemMatrix2
             for (int row = 0; row < matrix.GetLength(0); row++)
             {
                 string data = Console.ReadLine();
+                
                 for (int col = 0; col < matrix.GetLength(1); col++)
                 {
                     matrix[row, col] = data[col];
@@ -94,6 +95,7 @@ namespace _02.ProblemMatrix2
             }
 
             Console.WriteLine($"Money: {money}");
+            
             for (int row = 0; row < matrix.GetLength(0); row++)
             {
                 for (int col = 0; col < matrix.GetLength(1); col++)
