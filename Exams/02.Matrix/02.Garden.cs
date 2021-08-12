@@ -10,10 +10,12 @@ namespace _02.Garden
             int[] dimensions = Console.ReadLine()
                 .Split(' ', StringSplitOptions.RemoveEmptyEntries)
                 .Select(int.Parse).ToArray();
+            
             int rowSize = dimensions[0];
             int colSize = dimensions[1];
 
             int[,] matrix = new int[rowSize, colSize];
+            
             for (int row = 0; row < matrix.GetLength(0); row++)
             {
                 for (int col = 0; col < matrix.GetLength(1); col++)
@@ -46,6 +48,7 @@ namespace _02.Garden
                         }
                     }
                 }
+                
                 input = Console.ReadLine();
             }
 
