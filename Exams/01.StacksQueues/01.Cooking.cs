@@ -1,69 +1,66 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace _01.Cooking
+namespace _01.Problem
 {
-    class Program
+    class Brackets2
     {
         static void Main(string[] args)
         {
-            Queue<int> liquidsQueue = new Queue<int>(Console.ReadLine()
-                .Split(' ', StringSplitOptions.RemoveEmptyEntries)
-                .Select(int.Parse));
-
-            Stack<int> ingredientsStack = new Stack<int>(Console.ReadLine()
-                .Split(' ', StringSplitOptions.RemoveEmptyEntries)
-                .Select(int.Parse));
+            Queue<int> liquids = new Queue<int>(Console.ReadLine().Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(int.Parse));
+            Stack<int> ingredients = new Stack<int>(Console.ReadLine().Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(int.Parse));
 
             int bread = 0;
             int cake = 0;
             int pastry = 0;
             int fruitPie = 0;
 
-            while (liquidsQueue.Any() && ingredientsStack.Any())
+            while (liquids.Any() && ingredients.Any())
             {
-                int liquid = liquidsQueue.Peek();
-                int ingredient = ingredientsStack.Peek();
-                bool isCook = false;
+                int liquid = liquids.Peek();
+                int ingredeint = ingredients.Peek();
 
-                if (liquid + ingredient == 25)
+                if (liquid + ingredeint == 25)
                 {
-                    bread += 1;
-                    isCook = true;
+                    bread++;
+
+                    liquids.Dequeue();
+                    ingredients.Pop();
                 }
-                else if (liquid + ingredient == 50)
+                else if (liquid + ingredeint == 50)
                 {
-                    cake += 1;
-                    isCook = true;
+                    cake++;
+
+                    liquids.Dequeue();
+                    ingredients.Pop();
                 }
-                else if (liquid + ingredient == 75)
+                else if (liquid + ingredeint == 75)
                 {
-                    pastry += 1;
-                    isCook = true;
+                    pastry++;
+
+                    liquids.Dequeue();
+                    ingredients.Pop();
                 }
-                else if (liquid + ingredient == 100)
+                else if (liquid + ingredeint == 100)
                 {
-                    fruitPie += 1;
-                    isCook = true;
+                    fruitPie++;
+
+                    liquids.Dequeue();
+                    ingredients.Pop();
                 }
                 else
                 {
-                    liquidsQueue.Dequeue();
+                    int incrIngredient = ingredeint + 3;
 
-                    int ingredientsLeft = ingredient + 3;
-                    ingredientsStack.Pop();
-                    ingredientsStack.Push(ingredientsLeft);
-                }
+                    liquids.Dequeue();
+                    ingredients.Pop();
 
-                if (isCook)
-                {
-                    liquidsQueue.Dequeue();
-                    ingredientsStack.Pop();
+                    ingredients.Push(incrIngredient);
                 }
             }
 
-            if (bread >= 1 && cake >= 1 && fruitPie >= 1 && pastry >= 1)
+            if (bread >= 1 && cake >= 1 && pastry >= 1 && fruitPie >= 1)
             {
                 Console.WriteLine("Wohoo! You succeeded in cooking all the food!");
             }
@@ -72,22 +69,22 @@ namespace _01.Cooking
                 Console.WriteLine("Ugh, what a pity! You didn't have enough materials to cook everything.");
             }
 
-            if (liquidsQueue.Count == 0)
+            if (liquids.Any())
             {
-                Console.WriteLine($"Liquids left: none");
+                Console.WriteLine($"Liquids left: " + string.Join(", ", liquids));
             }
             else
             {
-                Console.WriteLine($"Liquids left: " + string.Join(", ", liquidsQueue));
+                Console.WriteLine("Liquids left: none");
             }
 
-            if (ingredientsStack.Count == 0)
+            if (ingredients.Any())
             {
-                Console.WriteLine("Ingredients left: none");
+                Console.WriteLine($"Ingredients left: " + string.Join(", ", ingredients));
             }
             else
             {
-                Console.WriteLine($"Ingredients left: " + string.Join(", ", ingredientsStack));
+                Console.WriteLine("Ingredients left: none");
             }
 
             Console.WriteLine($"Bread: {bread}");
