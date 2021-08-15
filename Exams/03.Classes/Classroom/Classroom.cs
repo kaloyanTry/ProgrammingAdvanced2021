@@ -16,12 +16,11 @@ namespace ClassroomProject
         }
 
         public int Capacity { get; set; }
-
         public int Count => students.Count;
 
         public string RegisterStudent(Student student)
         {
-            if (Count < Capacity)
+            if (Capacity > Count)
             {
                 students.Add(student);
 
@@ -36,7 +35,6 @@ namespace ClassroomProject
         public string DismissStudent(string firstName, string lastName)
         {
             Student student = students.FirstOrDefault(s => s.FirstName == firstName && s.LastName == lastName);
-
             if (student == null)
             {
                 return "Student not found";
@@ -50,26 +48,33 @@ namespace ClassroomProject
 
         public string GetSubjectInfo(string subject)
         {
-            StringBuilder sb = new StringBuilder();
+            List<Student> entrolledStudents = new List<Student>();
 
-            List<Student> studentsSubject = students.Where(s => s.Subject == subject).ToList();
-
-            if (studentsSubject.Count != 0)
+            foreach (var stu in students.Where(s => s.Subject == subject))
             {
+                entrolledStudents.Add(stu);
+            }
+
+            if (entrolledStudents.Any())
+            {
+                StringBuilder sb = new StringBuilder();
+
                 sb.AppendLine($"Subject: {subject}");
                 sb.AppendLine("Students:");
 
-                foreach (var stu in studentsSubject)
+                foreach (var student in entrolledStudents)
                 {
-                     sb.AppendLine($"{stu.FirstName} {stu.LastName}");
+                    sb.AppendLine($"{student.FirstName} {student.LastName}");
                 }
+
+                return sb.ToString().Trim();
+
+                
             }
             else
             {
-                sb.AppendLine("No students enrolled for the subject");
+                return "No students enrolled for the subject";
             }
-
-            return sb.ToString().Trim();
         }
 
         public int GetStudentsCount()
