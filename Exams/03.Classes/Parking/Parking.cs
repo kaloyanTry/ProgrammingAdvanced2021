@@ -17,7 +17,6 @@ namespace Parking
         }
 
         public string Type { get; set; }
-        
         public int Capacity { get; set; }
 
         public int Count => data.Count;
@@ -56,7 +55,6 @@ namespace Parking
             StringBuilder sb = new StringBuilder();
 
             sb.AppendLine($"The cars are parked in {Type}:");
-
             foreach (var car in data)
             {
                 sb.AppendLine(car.ToString());
