@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 
-namespace _02.ProblemMatrix2
+namespace _02.Snake3
 {
     class Program
     {
@@ -9,9 +9,9 @@ namespace _02.ProblemMatrix2
             int n = int.Parse(Console.ReadLine());
             char[,] matrix = new char[n, n];
 
-            int food = 0;
             int snakeRow = -1;
             int snakeCol = -1;
+            int snakeFood = 0;
 
             for (int row = 0; row < matrix.GetLength(0); row++)
             {
@@ -28,42 +28,39 @@ namespace _02.ProblemMatrix2
                 }
             }
 
-            string command = Console.ReadLine();
             while (true)
             {
+                string command = Console.ReadLine();
+
                 matrix[snakeRow, snakeCol] = '.';
 
-                if (command == "right")
+                if (command == "up")
                 {
-                    snakeCol++;
-                }
-                else if (command == "left")
-                {
-                    snakeCol--;
+                    snakeRow--;
                 }
                 else if (command == "down")
                 {
                     snakeRow++;
                 }
-                else if (command == "up")
+                else if (command == "left")
                 {
-                    snakeRow--;
+                    snakeCol--;
+                }
+                else if (command == "right")
+                {
+                    snakeCol++;
                 }
 
-                bool isOutside = snakeRow < 0 || snakeRow >= matrix.GetLength(0) || snakeCol < 0 || snakeCol>= matrix.GetLength(1);
-                if (isOutside)
+                if (snakeRow < 0 || snakeRow >= matrix.GetLength(0) || snakeCol < 0 || snakeCol >= matrix.GetLength(1))
                 {
+                    Console.WriteLine("Game over!");
                     break;
                 }
 
                 if (matrix[snakeRow, snakeCol] == '*')
                 {
-                    food++;
-                    if (food >= 10)
-                    {
-                        matrix[snakeRow, snakeCol] = 'S';
-                        break;
-                    }
+                    snakeFood++;
+                    matrix[snakeRow, snakeCol] = 'S';
                 }
 
                 if (matrix[snakeRow, snakeCol] == 'B')
@@ -76,26 +73,21 @@ namespace _02.ProblemMatrix2
                             {
                                 snakeRow = row;
                                 snakeCol = col;
-
                                 matrix[snakeRow, snakeCol] = '.';
                             }
                         }
                     }
+                    matrix[snakeRow, snakeCol] = '.';
                 }
 
-                command = Console.ReadLine();
+                if (snakeFood >= 10)
+                {
+                    Console.WriteLine("You won! You fed the snake.");
+                    break;
+                }
             }
 
-            if (food >= 10)
-            {
-                Console.WriteLine("You won! You fed the snake.");
-            }
-            else
-            {
-                Console.WriteLine("Game over!");
-            }
-
-            Console.WriteLine($"Food eaten: {food}");
+            Console.WriteLine($"Food eaten: {snakeFood}");
 
             for (int row = 0; row < matrix.GetLength(0); row++)
             {
