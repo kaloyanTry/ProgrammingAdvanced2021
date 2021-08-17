@@ -7,7 +7,6 @@
         public static void Main(string[] args)
         {
             //Sample Code Usage:
-
             //Initialize Cocktail
             Cocktail cocktail = new Cocktail("Pina Colada", 3, 10);
 
