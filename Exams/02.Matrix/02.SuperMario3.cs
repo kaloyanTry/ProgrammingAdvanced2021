@@ -1,8 +1,7 @@
 using System;
 using System.Linq;
-using System.Text;
 
-namespace _02.SuperMario
+namespace _02.ProblemMatrix2
 {
     class Program
     {
@@ -11,99 +10,97 @@ namespace _02.SuperMario
             int livesMario = int.Parse(Console.ReadLine());
             int nRows = int.Parse(Console.ReadLine());
 
-            char[][] matrix = new char[nRows][];
-            int rowMario = -1;
-            int colMario = -1;
+            char[][] maze = new char[nRows][];
+            int marioRow = -1;
+            int marioCol = -1;
 
             for (int row = 0; row < nRows; row++)
             {
-                string inputRow = Console.ReadLine();
+                string input = Console.ReadLine();
+                maze[row] = new char[input.Length];
 
-                matrix[row] = new char[inputRow.Length];
-
-                for (int col = 0; col < matrix[row].Length; col++)
+                for (int col = 0; col < maze[row].Length; col++)
                 {
-                    matrix[row][col] = inputRow[col];
+                    maze[row][col] = input[col];
 
-                    if (matrix[row][col] == 'M')
+                    if (maze[row][col] == 'M')
                     {
-                        rowMario = row;
-                        colMario = col;
+                        marioRow = row;
+                        marioCol = col;
                     }
                 }
             }
 
             while (true)
             {
-                string[] inputData = Console.ReadLine().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                string[] commands = Console.ReadLine().Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
-                matrix[rowMario][colMario] = '-';
+                maze[marioRow][marioCol] = '-';
 
-                char moveCommand = char.Parse(inputData[0]);
-                int rowSpawn = int.Parse(inputData[1]);
-                int colSpawn = int.Parse(inputData[2]);
+                char direction = char.Parse(commands[0]);
+                int spawnRow = int.Parse(commands[1]);
+                int spawnCol = int.Parse(commands[2]);
 
-                matrix[rowSpawn][colSpawn] = 'B';
+                maze[spawnRow][spawnCol] = 'B';
 
-                if (moveCommand == 'W')
+                if (direction == 'W')
                 {
-                    rowMario--;
+                    marioRow--;
                 }
-                else if (moveCommand == 'S')
+                else if (direction == 'S')
                 {
-                    rowMario++;
+                    marioRow++;
                 }
-                else if (moveCommand == 'A')
+                else if (direction == 'A')
                 {
-                    colMario--;
+                    marioCol--;
                 }
-                else if (moveCommand == 'D')
+                else if (direction == 'D')
                 {
-                    colMario++;
+                    marioCol++;
                 }
 
-                if (rowMario == -1)
+                if (marioRow == -1)
                 {
-                    rowMario = 0;
+                    marioRow = 0;
                 }
-                else if (rowMario == nRows)
+                else if (marioRow == nRows)
                 {
-                    rowMario = nRows - 1;
+                    marioRow = nRows - 1;
                 }
-                else if (colMario == -1)
+                else if (marioCol == -1)
                 {
-                    colMario = 0;
+                    marioCol = 0;
                 }
-                else if (colMario == matrix.Length)
+                else if (marioCol == maze.Length)
                 {
-                    colMario = matrix.Length - 1;
+                    marioCol = maze.Length - 1;
                 }
 
                 livesMario--;
 
-                if (matrix[rowMario][colMario] == matrix[rowSpawn][colSpawn])
+                if (maze[marioRow][marioCol] == maze[spawnRow][spawnCol])
                 {
+                    maze[marioRow][marioCol] = '-';
                     livesMario -= 2;
                 }
 
-                if (matrix[rowMario][colMario] == 'P')
+                if (maze[marioRow][marioCol] == 'P')
                 {
-                    matrix[rowMario][colMario] = '-';
+                    maze[marioRow][marioCol] = '-';
                     Console.WriteLine($"Mario has successfully saved the princess! Lives left: {livesMario}");
                     break;
                 }
 
                 if (livesMario <= 0)
                 {
-                    matrix[rowMario][colMario] = 'X';
-                    Console.WriteLine($"Mario died at {rowMario};{colMario}.");
+                    maze[marioRow][marioCol] = 'X';
+                    Console.WriteLine($"Mario died at {marioRow};{marioCol}.");
                     break;
                 }
-
-                matrix[rowMario][colMario] = 'M';
             }
 
-            foreach (var row in matrix)
+            foreach (var row in maze)
             {
                 Console.WriteLine(row);
             }
