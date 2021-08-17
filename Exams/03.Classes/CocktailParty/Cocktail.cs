@@ -22,25 +22,13 @@ namespace CocktailParty
         public int MaxAlcoholLevel { get; set; }
 
         public void Add(Ingredient ingredient)
-        {
-            int amountAlcohol = 0;
-            int amountQuantity = 0;
-            foreach (var alc in Ingredients.Where(i => i.Name != ingredient.Name))
+        {     
+            if (!Ingredients.Contains(ingredient))
             {
-                if (alc.Alcohol + amountAlcohol < MaxAlcoholLevel)
+                if (Ingredients.Sum(i => i.Alcohol) <= MaxAlcoholLevel || Ingredients.Sum(i => i.Quantity) <= Capacity)
                 {
-                    amountAlcohol += alc.Alcohol;
+                    Ingredients.Add(ingredient);
                 }
-
-                if (alc.Quantity + amountQuantity < Capacity)
-                {
-                    amountQuantity += alc.Quantity;
-                }
-            }
-
-            if (!Ingredients.Contains(ingredient) && (MaxAlcoholLevel > amountAlcohol && Capacity > amountQuantity))
-            {
-                Ingredients.Add(ingredient);
             }
         }
 
@@ -48,44 +36,24 @@ namespace CocktailParty
         {
             Ingredient ingredient = Ingredients.FirstOrDefault(i => i.Name == name);
 
-            if (ingredient == null)
-            {
-                return false;
-            }
-
-            Ingredients.Remove(ingredient);
-            return true;
+            return Ingredients.Remove(ingredient);
         }
+
 
         public Ingredient FindIngredient(string name)
         {
-            Ingredient ingredinet = Ingredients.Find(i => i.Name == name);
+            Ingredient ingredient = Ingredients.FirstOrDefault(i => i.Name == name);
 
-            if (ingredinet == null)
-            {
-                return null;
-            }
-
-            return ingredinet;
-            //return Ingredients.Contains(ingredient) ? ingredient : null;
+            return ingredient;
         }
 
         public Ingredient GetMostAlcoholicIngredient()
         {
-            Ingredient mostAlcoholicIngredient = Ingredients.OrderByDescending(i => i.Alcohol).FirstOrDefault();
+            Ingredient ingredient = Ingredients.OrderByDescending(i => i.Alcohol).FirstOrDefault();
 
-            return mostAlcoholicIngredient;
+            return ingredient;
         }
 
-        public int CurrentAlcoholLevel2()
-        {
-            int amountAlc = 0;
-            foreach (var ingredientAlcohol in Ingredients)
-            {
-                amountAlc += ingredientAlcohol.Alcohol;
-            }
-            return amountAlc;
-        }
         public int CurrentAlcoholLevel => Ingredients.Sum(i => i.Alcohol);
 
         public string Report()
@@ -94,9 +62,9 @@ namespace CocktailParty
 
             sb.AppendLine($"Cocktail: {Name} - Current Alcohol Level: {CurrentAlcoholLevel}");
 
-            foreach (var ingredient in Ingredients)
+            foreach (var ingradient in Ingredients)
             {
-                sb.AppendLine(ingredient.ToString());
+                sb.AppendLine(ingradient.ToString());
             }
 
             return sb.ToString().Trim();
