@@ -10,6 +10,7 @@ namespace ConsoleStreams
             Directory.CreateDirectory("../../../DirNew");
 
             File.Create("../../../DirNew/textNew.txt");
+            
             File.Create("../../../DirNew/presiNew.ppt");
 
             string[] filesDir = Directory.GetFiles("../../../DirNew");
