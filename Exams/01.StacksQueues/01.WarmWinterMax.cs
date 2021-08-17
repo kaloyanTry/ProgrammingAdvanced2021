@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,9 +9,9 @@ namespace _01.Problem
         static void Main(string[] args)
         {
             Stack<int> hats = new Stack<int>(Console.ReadLine().Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(int.Parse));
+
             Queue<int> scarfs = new Queue<int>(Console.ReadLine().Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(int.Parse));
 
-            //int mostExpensiveSet = 0;
             Queue<int> sets = new Queue<int>();
 
             while (hats.Any() && scarfs.Any())
@@ -23,27 +23,25 @@ namespace _01.Problem
                 if (hat > scarf)
                 {
                     set = hat + scarf;
-                    sets.Enqueue(set);
+                    hats.Pop();
+                    scarfs.Dequeue();
 
-                    hats.Pop();
-                    scarfs.Dequeue();
+                    sets.Enqueue(set);
                 }
-                else if (scarf > hat)
+                else if (hat < scarf)
                 {
                     hats.Pop();
                 }
-                else if (scarf == hat)
+                else if (hat == scarf)
                 {
+                    int hatIncremented = hat + 1;
                     scarfs.Dequeue();
-                    int lastHat = hat + 1;
                     hats.Pop();
-                    hats.Push(lastHat);
+                    hats.Push(hatIncremented);
                 }
             }
 
-            int mostExpensiveSet = sets.Max();
-
-            Console.WriteLine($"The most expensive set is: {mostExpensiveSet}");
+            Console.WriteLine($"The most expensive set is: {sets.Max()}");
 
             Console.WriteLine(string.Join(' ', sets));
         }
