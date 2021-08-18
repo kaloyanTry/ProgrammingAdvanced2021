@@ -6,7 +6,6 @@ namespace VetClinic
     {
         static void Main(string[] args)
         {
-
             // Initialize the repository
             Clinic clinic = new Clinic(20);
 
