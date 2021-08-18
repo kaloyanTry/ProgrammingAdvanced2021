@@ -14,7 +14,6 @@ namespace VetClinic
             Capacity = capacity;
             data = new List<Pet>();
         }
-
         public int Capacity { get; set; }
 
         public int Count => data.Count;
@@ -31,13 +30,7 @@ namespace VetClinic
         {
             Pet pet = data.FirstOrDefault(p => p.Name == name);
 
-            if (pet == null)
-            {
-                return false;
-            }
-
-            data.Remove(pet);
-            return true;
+            return data.Remove(pet);
         }
 
         public Pet GetPet(string name, string owner)
@@ -57,7 +50,6 @@ namespace VetClinic
         public string GetStatistics()
         {
             StringBuilder sb = new StringBuilder();
-
             sb.AppendLine("The clinic has the following patients:");
 
             foreach (var pet in data)
