@@ -76,7 +76,6 @@ namespace Guild
             {
                 sb.AppendLine(player.ToString());
             }
-
             return sb.ToString().Trim();
         }
     }
